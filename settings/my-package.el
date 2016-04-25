@@ -1,3 +1,10 @@
+
+(setq url-using-proxy t)
+(setq url-proxy-services
+      '(("no_proxy" . "^\\(localhost\\|10.*\\|0:4587\\|127.*\\|.*:24969\\)")
+        ("http"     . "135.245.192.6:8000")
+        ("https"    . "135.245.192.6:8000")))
+
 (require 'package)
 
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))

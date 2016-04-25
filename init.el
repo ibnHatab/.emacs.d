@@ -80,9 +80,9 @@
  erc-lurker-hide-list '("JOIN" "KICK" "NICK" "PART" "QUIT" "MODE")
  erc-lurker-threshold-time 14400)
 
-(set-face-attribute 'default nil
-                    :family "Fira Mono"
-                    :height '120)
+;; (set-face-attribute 'default nil
+;;                     :family "Fira Mono"
+;;                     :height '120)
 
 ;;; Apply web mode for html
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
@@ -101,11 +101,6 @@
 ;; Load theme
 (load-theme
  'solarized-light t)
-
-(when (eq window-system 'mac)
-  (setq
-   mac-option-modifier 'meta
-   mac-command-modifier 'meta))
 
 (provide 'init)
 ;;; init.el ends here
