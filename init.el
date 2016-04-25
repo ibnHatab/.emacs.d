@@ -17,6 +17,15 @@
 (require 'language-lisp)
 (require 'language-c)
 
+(add-to-list
+ 'load-path
+ (expand-file-name "local" user-emacs-directory))
+
+(require 'windcycle)
+
+(fset 'yes-or-no-p 'y-or-n-p)
+(setq scroll-step 1)                    ; scrolling page
+
 (ensure-package-installed
  'whole-line-or-region
  'which-key
@@ -25,19 +34,18 @@
  'exec-path-from-shell
  'web-mode
  'yasnippet
- 'super-save
+ ;; 'super-save
  'restclient
 
- ;;; Themes
- 'flatui-theme
- 'solarized-theme
- 'atom-one-dark-theme)
+;; Themes
+ 'color-theme-sanityinc-solarized
+ )
 
 ;; I may have some variables set in my shell
 (exec-path-from-shell-initialize)
 
-(require 'super-save)
-(super-save-initialize)
+;; (require 'super-save)
+;; (super-save-initialize)
 
 ;; Enable global-modes
 (my-turn-modes 1
@@ -45,6 +53,7 @@
                'global-company-mode
                'global-hl-line-mode
                'which-key-mode
+               'winner-mode
                'whole-line-or-region-mode)
 
 (setq-default
@@ -72,35 +81,27 @@
 (setq-default
  inhibit-startup-screen t
  indent-tabs-mode nil
- auto-save-default nil
+; auto-save-default nil
  make-backup-files nil)
-
-;; Disable annoying messages in ERC
-(setq-default
- erc-lurker-hide-list '("JOIN" "KICK" "NICK" "PART" "QUIT" "MODE")
- erc-lurker-threshold-time 14400)
 
 ;; (set-face-attribute 'default nil
 ;;                     :family "Fira Mono"
-;;                     :height '120)
-
-;;; Apply web mode for html
-(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-(setq-default
- web-mode-markup-indent-offset 2
- web-mode-code-indent-offset 2)
-
-;;; Compile buffer colorization fix
-(ignore-errors
-  (require 'ansi-color)
-  (defun my-colorize-compilation-buffer ()
-    (when (eq major-mode 'compilation-mode)
-      (ansi-color-apply-on-region compilation-filter-start (point-max))))
-  (add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer))
+;;                     :height '110)
 
 ;; Load theme
-(load-theme
- 'solarized-light t)
+(setq my-themes '(sanityinc-solarized-dark sanityinc-solarized-light))
+
+(setq my-cur-theme nil)
+(defun cycle-my-theme ()
+  "Cycle through a list of themes, my-themes"
+  (interactive)
+  (when my-cur-theme
+    (disable-theme my-cur-theme)
+    (setq my-themes (append my-themes (list my-cur-theme))))
+  (setq my-cur-theme (pop my-themes))
+  (load-theme my-cur-theme t))
+(cycle-my-theme)
+
+(server-start)
 
 (provide 'init)
-;;; init.el ends here
