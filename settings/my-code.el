@@ -1,7 +1,10 @@
 (ensure-package-installed
  'flycheck
  'diff-hl
- 'rainbow-delimiters)
+ 'rainbow-delimiters
+ 'smartparens)
+
+(smartparens-global-mode 1)
 
 ;;; Apply web mode for html
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
@@ -44,18 +47,11 @@
                  'electric-pair-mode)
   (add-to-list 'write-file-functions 'delete-trailing-whitespace))
 
-(global-set-key (kbd "<f5>") 'recompile)
-
-;; Move line/code region with M-S-Up/Down
-(global-set-key [M-S-up]   'move-text-up)
-(global-set-key [M-S-down] 'move-text-down)
-
-(global-set-key "\M-,"              'pop-tag-mark)
-
 
 (add-hook 'write-file-functions 'delete-trailing-whitespace)
 (autoload 'nuke-trailing-whitespace "whitespace" nil t) ;remove trailing
 
+;; Camel / Uncamel cases
 (defun mo-toggle-identifier-naming-style ()
   "Toggles the symbol at point between C-style naming,
 e.g. `hello_world_string', and camel case,
@@ -82,6 +78,9 @@ e.g. `HelloWorldString'."
         (replace-match (funcall func (match-string 1))
                        t nil))
       (widen))))
+
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq ediff-split-window-function 'split-window-vertically)
 
 (provide 'my-code)
 ;;; my-code.el ends here

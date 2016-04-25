@@ -19,10 +19,10 @@
 
 ;;; Commentary:
 ;;; Simple Window cycling for Emacs using C-x arrows or Meta arrows
-;;; You can also swap buffers between windows using Meta-Shift arrow 
-;;; And resize windows using Control-Shift arrows 
-;;; To use add 
-;;; (require 'windcycle) 
+;;; You can also swap buffers between windows using Meta-Shift arrow
+;;; And resize windows using Control-Shift arrows
+;;; To use add
+;;; (require 'windcycle)
 ;;; to your .emacs
 
 ;; Windows Cycling
@@ -127,10 +127,10 @@
 (global-set-key (kbd "S-M-<left>") 'buffer-left-swap)
 
 ;; Window Resizing keybindings
-(global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
-(global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
-(global-set-key (kbd "S-C-<down>") 'shrink-window)
-(global-set-key (kbd "S-C-<up>") 'enlarge-window)
+;; (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
+;; (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
+;; (global-set-key (kbd "S-C-<down>") 'shrink-window)
+;; (global-set-key (kbd "S-C-<up>") 'enlarge-window)
 
 ;; Window Split keybindings
 (global-set-key (kbd "C-x -") 'split-window-vertically)

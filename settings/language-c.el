@@ -1,6 +1,7 @@
 (ensure-package-installed
  'company-c-headers
- 'helm-gtags)
+ 'helm-gtags
+ 'xcscope)
 
 (defun my-c-mode ()
   (helm-gtags-mode 1)
@@ -19,7 +20,6 @@
   ;; (add-to-list 'company-backends 'company-gtags)
   )
 
-(add-hook 'c-mode-hook 'my-c-mode)
 
 (setq
  helm-gtags-ignore-case t
@@ -28,6 +28,47 @@
  helm-gtags-pulse-at-cursor t
  helm-gtags-prefix-key "\C-cg"
  helm-gtags-suggested-key-mapping t)
+
+(cscope-setup)
+(setq cscope-database-regexps
+      '(
+        ( "^/udir/vlad/repos/femto-henb"
+          ( t )
+          ( "/udir/vlad/repos/femto-cpe")
+          t
+          ( "/udir/vlad/repos/net/buildroot-2011.11/output/build/linux-3.1/"
+            ("-d" "-I/usr/include"))
+          )
+        ( "^/users/jdoe/sources/gnome/"
+          ( "/master/gnome/database" ("-d") ))
+        )
+      )
+
+
+(custom-set-variables
+ '(cscope-truncate-lines t)
+ '(cscope-do-not-update-database t)
+ )
+
+(defun cscope-keys ()
+  (local-set-key "\M-." 'cscope-find-global-definition-no-prompting)
+  (local-set-key "\M-," 'cscope-pop-mark)
+  (local-set-key "\M-?" 'cscope-find-this-symbol)
+  (local-set-key "\M-\\" 'cscope-find-functions-calling-this-function) ;; f4 References
+  (local-set-key [(control f6)] 'cscope-display-buffer)                       ;; f6 display buffer
+  (local-set-key [(control f7)] 'cscope-prev-symbol)                          ;; f7 prev sym
+  (local-set-key [(control f8)] 'cscope-next-symbol)                          ;; f8 next sym
+  (local-set-key [(control f9)] 'cscope-set-initial-directory)                ;; f9 set initial dir
+  (local-set-key [(M-tab)]	'complete-tag )
+  (local-set-key "\C-cm" #'expand-member-functions))
+
+;; Alternative
+(add-hook 'c++-mode-hook 'my-c-mode)
+(add-hook 'c-mode-hook 'my-c-mode)
+
+;; (add-hook 'c++-mode-hook 'cscope-keys)
+;; (add-hook 'c-mode-hook 'cscope-keys)
+
 
 (provide 'language-c)
 ;;; language-c.el ends here

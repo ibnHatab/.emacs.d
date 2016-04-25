@@ -5,17 +5,13 @@
  'expand-region
  'neotree
  'buffer-move
- 'ack)
+ 'ack
+ 'bm)
 
-(global-set-key (kbd "C-=") 'er/expand-region)
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 
 (global-set-key (kbd "C-c SPC") 'ace-jump-mode)
 
-(global-set-key "\C-z"            'undo)
-(global-set-key (kbd "C-x \\")      'align-regexp)
+;; Fast movements
 (global-set-key [C-right]       'forward-word)
 (global-set-key [C-left]        'backward-word)
 (global-set-key [?\C-\.]        'goto-line)
@@ -25,19 +21,9 @@
 
 (global-set-key [C-escape]          'helm-buffers-list)
 
-(global-set-key [(f9)]         'ack)
-(global-set-key [(C-f9)]       'grep)
-(global-set-key [(M-f9)]       'search-all-buffers)
-
-(global-set-key [(f11)]         'nuke-trailing-whitespace)
-(global-set-key [(C-f11)]       'cycle-my-theme)
-(global-set-key [(f12)]         'kill-this-buffer)
-(global-set-key [(C-f12)]       'server-edit)
-
 (defun search-all-buffers (regexp)
   (interactive "sRegexp: ")
   (multi-occur-in-matching-buffers "." regexp t))
-
 
 (defun smart-line-beginning ()
   "Move point to the beginning of text on the current line; if that is already
@@ -64,5 +50,15 @@ the current position of point, then move it to the beginning of the line."
 (global-set-key [s-right] 'windmove-right-cycle)        ; move to right window
 (global-set-key [s-up]    'windmove-up-cycle)           ; move to upper window
 (global-set-key [s-down]  'windmove-down-cycle)         ; move to downer window
+
+;; Bookmark
+(global-set-key (kbd "<C-f2>")   'bm-toggle)
+(global-set-key (kbd "<M-f2>")   'bm-next)
+(global-set-key (kbd "<S-f2>")   'bm-previous)
+(global-set-key (kbd "<S-M-f2>") 'bm-show-all)
+
+(global-set-key (kbd "<left-fringe> <mouse-5>") 'bm-next-mouse)
+(global-set-key (kbd "<left-fringe> <mouse-4>") 'bm-previous-mouse)
+(global-set-key (kbd "<left-fringe> <mouse-1>") 'bm-toggle-mouse)
 
 (provide 'my-navigation)

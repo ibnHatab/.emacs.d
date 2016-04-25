@@ -9,6 +9,7 @@
 
 (require 'my-package)
 (require 'my-navigation)
+(require 'my-keys)
 (require 'my-code)
 (require 'my-engine)
 (require 'my-projects)
@@ -16,6 +17,9 @@
 (require 'language-javascript)
 (require 'language-lisp)
 (require 'language-c)
+(require 'language-erlang)
+(require 'language-ruby)
+(require 'language-python)
 
 (add-to-list
  'load-path
@@ -32,10 +36,9 @@
  'company
  'better-defaults
  'exec-path-from-shell
- 'web-mode
  'yasnippet
- ;; 'super-save
  'restclient
+ 'smartparens
 
 ;; Themes
  'color-theme-sanityinc-solarized
@@ -44,9 +47,6 @@
 ;; I may have some variables set in my shell
 (exec-path-from-shell-initialize)
 
-;; (require 'super-save)
-;; (super-save-initialize)
-
 ;; Enable global-modes
 (my-turn-modes 1
                'global-auto-revert-mode
@@ -54,6 +54,7 @@
                'global-hl-line-mode
                'which-key-mode
                'winner-mode
+               'delete-selection-mode
                'whole-line-or-region-mode)
 
 (setq-default
@@ -83,10 +84,6 @@
  indent-tabs-mode nil
 ; auto-save-default nil
  make-backup-files nil)
-
-;; (set-face-attribute 'default nil
-;;                     :family "Fira Mono"
-;;                     :height '110)
 
 ;; Load theme
 (setq my-themes '(sanityinc-solarized-dark sanityinc-solarized-light))
