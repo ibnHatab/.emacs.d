@@ -9,6 +9,8 @@
 
 ;;; Enable projectile in all buffers
 (add-hook 'after-init-hook 'projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
 
 ;; Helmify everything
 (helm-mode 1)

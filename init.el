@@ -54,11 +54,10 @@
                'global-hl-line-mode
                'which-key-mode
                'winner-mode
-               'delete-selection-mode
                'whole-line-or-region-mode)
 
 (setq-default
- which-key-idle-delay 0.2)
+ which-key-idle-delay 0.9)
 
 (add-hook
  'company-mode-hook
@@ -102,3 +101,27 @@
 (server-start)
 
 (provide 'init)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(browse-url-chromium-program "google-chrome-stable")
+ '(cscope-do-not-update-database t)
+ '(cscope-truncate-lines t)
+ '(blink-matching-paren-on-screen t)
+ '(column-number-mode t)
+ '(delete-selection-mode t)
+ '(display-time-mode t)
+ '(enable-local-variables :all)
+ '(global-auto-highlight-symbol-mode t)
+ '(kill-whole-line t)
+ '(use-file-dialog nil)
+ '(x-select-enable-clipboard t)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ ))

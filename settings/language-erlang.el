@@ -1,3 +1,5 @@
+;;; Code:
+
 (ensure-package-installed
  'edts
  'elixir-mode
@@ -9,10 +11,22 @@
   (require 'edts-start)
   (local-set-key "\C-c\C-z" 'edts-shell))
 
+;; Interworking
+
+(setq alchemist-goto-erlang-source-dir "/local/vlad/repos/erlang/otp_src_18.3")
+(setq alchemist-goto-elixir-source-dir "/local/vlad/repos/erlang/elixir")
+
+(defun custom-erlang-mode-hook ()
+  (define-key erlang-mode-map (kbd "M-,") 'alchemist-goto-jump-back))
+(add-hook 'erlang-mode-hook 'custom-erlang-mode-hook)
+
+
 ;; elixir
 (require 'elixir-mode)
 (require 'alchemist)
 (require 'flycheck)
+
+(add-hook 'elixir-mode-hook 'alchemist-mode)
 
 (add-to-list 'elixir-mode-hook
              (defun my-emlixir-mode-hook ()
@@ -23,9 +37,10 @@
                (define-key elixir-mode-map (kbd "C-c C-r") 'alchemist-iex-send-region-and-go)
                (define-key elixir-mode-map (kbd "C-c C-c") 'alchemist-iex-send-current-line-and-go)
                (define-key elixir-mode-map (kbd "C-c C-d") 'alchemist-help-search-at-point)
+
                (define-key elixir-mode-map (kbd "C-c C-l") 'alchemist-iex-compile-this-buffer)
                (define-key elixir-mode-map (kbd "C-c C-t") 'alchemist-mix-test)
-               ))
+               (alchemist-iex-program-name "iex --sname iex")))
 
 
 (add-to-list 'alchemist-iex-mode-hook

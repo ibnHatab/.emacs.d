@@ -1,7 +1,8 @@
 (ensure-package-installed
  'company-c-headers
  'helm-gtags
- 'xcscope)
+ 'xcscope
+ 'helm-cscope)
 
 (defun my-c-mode ()
   (helm-gtags-mode 1)
@@ -62,13 +63,22 @@
   (local-set-key [(M-tab)]	'complete-tag )
   (local-set-key "\C-cm" #'expand-member-functions))
 
+
+
 ;; Alternative
-(add-hook 'c++-mode-hook 'my-c-mode)
-(add-hook 'c-mode-hook 'my-c-mode)
+;; (add-hook 'c++-mode-hook 'my-c-mode)
+;; (add-hook 'c-mode-hook 'my-c-mode)
 
 ;; (add-hook 'c++-mode-hook 'cscope-keys)
 ;; (add-hook 'c-mode-hook 'cscope-keys)
 
+(add-hook 'c-mode-common-hook 'helm-cscope-mode)
+(add-hook 'helm-cscope-mode-hook
+          (lambda ()
+            (local-set-key (kbd "M-.") 'helm-cscope-find-global-definition)
+            (local-set-key (kbd "M-@") 'helm-cscope-find-calling-this-funtcion)
+            (local-set-key (kbd "M-s") 'helm-cscope-find-this-symbol)
+            (local-set-key (kbd "M-,") 'helm-cscope-pop-mark)))
 
 (provide 'language-c)
 ;;; language-c.el ends here
