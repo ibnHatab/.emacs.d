@@ -111,20 +111,20 @@
 	   (if d (message "Window is not dedicated") (message "Window is now dedicated")))))
 
 ;; Switch window keybindings
-(global-set-key (kbd "C-x <up>") 'windmove-up-cycle)
-(global-set-key (kbd "C-x <down>") 'windmove-down-cycle)
-(global-set-key (kbd "C-x <right>") 'windmove-right-cycle)
-(global-set-key (kbd "C-x <left>") 'windmove-left-cycle)
-(global-set-key (kbd "M-<up>") 'windmove-up-cycle)
-(global-set-key (kbd "M-<down>") 'windmove-down-cycle)
-(global-set-key (kbd "M-<right>") 'windmove-right-cycle)
-(global-set-key (kbd "M-<left>") 'windmove-left-cycle)
+;; (global-set-key (kbd "C-x <up>") 'windmove-up-cycle)
+;; (global-set-key (kbd "C-x <down>") 'windmove-down-cycle)
+;; (global-set-key (kbd "C-x <right>") 'windmove-right-cycle)
+;; (global-set-key (kbd "C-x <left>") 'windmove-left-cycle)
+;; (global-set-key (kbd "M-<up>") 'windmove-up-cycle)
+;; (global-set-key (kbd "M-<down>") 'windmove-down-cycle)
+;; (global-set-key (kbd "M-<right>") 'windmove-right-cycle)
+;; (global-set-key (kbd "M-<left>") 'windmove-left-cycle)
 
 ;; Swap window keybindings
-(global-set-key (kbd "S-M-<up>") 'buffer-up-swap)
-(global-set-key (kbd "S-M-<down>") 'buffer-down-swap)
-(global-set-key (kbd "S-M-<right>") 'buffer-right-swap)
-(global-set-key (kbd "S-M-<left>") 'buffer-left-swap)
+;; (global-set-key (kbd "S-M-<up>") 'buffer-up-swap)
+;; (global-set-key (kbd "S-M-<down>") 'buffer-down-swap)
+;; (global-set-key (kbd "S-M-<right>") 'buffer-right-swap)
+;; (global-set-key (kbd "S-M-<left>") 'buffer-left-swap)
 
 ;; Window Resizing keybindings
 ;; (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
@@ -133,8 +133,8 @@
 ;; (global-set-key (kbd "S-C-<up>") 'enlarge-window)
 
 ;; Window Split keybindings
-(global-set-key (kbd "C-x -") 'split-window-vertically)
-(global-set-key (kbd "C-x |") 'split-window-horizontally)
+;; (global-set-key (kbd "C-x -") 'split-window-vertically)
+;; (global-set-key (kbd "C-x |") 'split-window-horizontally)
 
 ;; Window Close keybindings
 (global-set-key (kbd "C-x x") 'delete-window)

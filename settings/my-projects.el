@@ -7,10 +7,26 @@
  'magit
  'git-gutter)
 
+(add-hook
+ 'company-mode-hook
+ '(lambda ()
+   ;; Slightly better autocomplete on tab
+   (define-key company-active-map [tab] 'company-complete-common-or-cycle)
+   (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)))
+
+(setq-default
+ company-idle-delay 0.1
+ company-minimum-prefix-length 1)
+
 ;;; Enable projectile in all buffers
 (add-hook 'after-init-hook 'projectile-global-mode)
 (setq projectile-completion-system 'helm)
+
 (helm-projectile-on)
+
+(setq-default
+ projectile-completion-system 'helm
+ vc-follow-symlinks 't)
 
 ;; Helmify everything
 (helm-mode 1)
@@ -51,21 +67,16 @@
                     (prog1 git-grep-default-work-tree
                       (message "git-grep: %s doesn't look like a git working tree; searching from %s instead" default-directory root)))))
       (grep (format "GIT_PAGER='' git grep %s -e %s -- %s" git-grep-switches regexp root)))))
-(global-set-key (kbd "C-x ?") 'git-grep)
-(global-set-key (kbd "C-x g") 'magit-status)
-
-(helm-projectile-on)
-
-(setq-default
- projectile-completion-system 'helm
- vc-follow-symlinks 't)
 
 (global-git-gutter-mode t)
+
+(global-set-key (kbd "C-x ?")   'git-grep)
+(global-set-key (kbd "C-x g")   'magit-status)
 (global-set-key (kbd "C-x C-g") 'git-gutter:toggle)
 (global-set-key (kbd "C-x v =") 'git-gutter:popup-hunk)
-(global-set-key (kbd "C-x p") 'git-gutter:previous-hunk)
-(global-set-key (kbd "C-x n") 'git-gutter:next-hunk)
-(global-set-key (kbd "C-x r") 'git-gutter:revert-hunk)
+(global-set-key (kbd "C-x p")   'git-gutter:previous-hunk)
+(global-set-key (kbd "C-x n")   'git-gutter:next-hunk)
+(global-set-key (kbd "C-x r")   'git-gutter:revert-hunk)
 
 
 (provide 'my-projects)

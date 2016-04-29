@@ -1,3 +1,4 @@
+;;; Code:
 
 (setq url-using-proxy t)
 (setq url-proxy-services
@@ -11,8 +12,7 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
 
-(setq
- package-enable-at-startup nil)
+(setq package-enable-at-startup nil)
 (package-initialize)
 
 (defun ensure-package-installed (&rest packages)

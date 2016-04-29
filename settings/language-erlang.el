@@ -43,13 +43,6 @@
                (alchemist-iex-program-name "iex --sname iex")))
 
 
-(add-to-list 'alchemist-iex-mode-hook
-             (defun my-alchemis-mode-hook ()
-               (company-mode)
-;;               (define-key elixir-mode-map (kbd "M-TAB")   'company-complete)
-               (define-key elixir-mode-map (kbd "C-c C-d") 'alchemist-help-search-at-point)
-               ))
-
 (flycheck-define-checker elixir
   "An Elixir syntax checker using the Elixir interpreter.
 See URL `http://elixir-lang.org/'."
@@ -78,6 +71,5 @@ See URL `http://elixir-lang.org/'."
          :when '(("SPC" "RET"))
          :post-handlers '(sp-ruby-def-post-handler)
          :actions '(insert navigate)))
-
 
 (provide 'language-erlang)

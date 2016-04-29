@@ -1,15 +1,18 @@
+;;; Code:
+
 (ensure-package-installed
  ;; Navigation
  'ace-jump-mode
  'multiple-cursors
  'expand-region
  'neotree
- 'buffer-move
  'ack
  'bm)
 
+(setq scroll-step 1)                    ; scrolling page
+(require 'windcycle)
 
-(global-set-key (kbd "C-c SPC") 'ace-jump-mode)
+(global-set-key (kbd "C-\\")    'ace-jump-mode)
 
 ;; Fast movements
 (global-set-key [C-right]       'forward-word)
@@ -19,7 +22,7 @@
 (global-set-key [ESC-backspace] 'backward-kill-word)
 (global-set-key [C-backspace]   'backward-kill-word)
 
-(global-set-key [C-escape]          'helm-buffers-list)
+(global-set-key [C-escape]      'helm-buffers-list)
 
 (defun search-all-buffers (regexp)
   (interactive "sRegexp: ")
@@ -33,23 +36,28 @@ the current position of point, then move it to the beginning of the line."
     (beginning-of-line-text)
     (when (eq pt (point))
       (beginning-of-line))))
-(global-set-key (kbd "C-a") 'smart-line-beginning)
+(global-set-key (kbd "C-a")           'smart-line-beginning)
 
-(global-set-key (kbd "s-s")         'neotree-toggle)
-(global-set-key (kbd "s-a")         'neotree-find)
+(global-set-key (kbd "s-s")           'neotree-toggle)
+(global-set-key (kbd "s-a")           'neotree-find)
 
-(global-set-key [s-S-up]   'delete-other-windows-vertically)
-(global-set-key [s-S-down] 'delete-other-windows-vertically)
+(global-set-key [s-S-up]              'delete-other-windows-vertically)
+(global-set-key [s-S-down]            'delete-other-windows-vertically)
 
-(global-set-key [M-s-up]     'buf-move-up)
-(global-set-key [M-s-down]   'buf-move-down)
-(global-set-key [M-s-left]   'buf-move-left)
-(global-set-key [M-s-right]  'buf-move-right)
+(global-set-key [M-s-up]              'buffer-up-swap)
+(global-set-key [M-s-down]            'buffer-down-swap)
+(global-set-key [M-s-left]            'buffer-left-swap)
+(global-set-key [M-s-right]           'buffer-right-swap)
 
-(global-set-key [s-left]  'windmove-left-cycle)         ; move to left windnow
-(global-set-key [s-right] 'windmove-right-cycle)        ; move to right window
-(global-set-key [s-up]    'windmove-up-cycle)           ; move to upper window
-(global-set-key [s-down]  'windmove-down-cycle)         ; move to downer window
+(global-set-key (kbd "S-M-s-<left>")  'shrink-window-horizontally)
+(global-set-key (kbd "S-M-s-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "S-M-s-<down>")  'shrink-window)
+(global-set-key (kbd "S-M-s-<up>")    'enlarge-window)
+
+(global-set-key [s-left]  'windmove-left-cycle)
+(global-set-key [s-right] 'windmove-right-cycle)
+(global-set-key [s-up]    'windmove-up-cycle)
+(global-set-key [s-down]  'windmove-down-cycle)
 
 ;; Bookmark
 (global-set-key (kbd "<C-f2>")   'bm-toggle)
@@ -60,5 +68,14 @@ the current position of point, then move it to the beginning of the line."
 (global-set-key (kbd "<left-fringe> <mouse-5>") 'bm-next-mouse)
 (global-set-key (kbd "<left-fringe> <mouse-4>") 'bm-previous-mouse)
 (global-set-key (kbd "<left-fringe> <mouse-1>") 'bm-toggle-mouse)
+
+;; IDO
+(ido-mode t)
+(setq ido-enable-flex-matching t)
+
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+
+(require 'saveplace)
 
 (provide 'my-navigation)

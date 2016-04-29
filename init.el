@@ -1,6 +1,12 @@
+;;; Code:
+
 (add-to-list
  'load-path
  (expand-file-name "settings" user-emacs-directory))
+
+(add-to-list
+ 'load-path
+ (expand-file-name "local" user-emacs-directory))
 
 (defun my-turn-modes (param &rest modes)
   ;;; Applies the parameter to the specified modes
@@ -14,33 +20,26 @@
 (require 'my-engine)
 (require 'my-projects)
 (require 'my-directory)
+(require 'my-org)
 (require 'language-javascript)
 (require 'language-lisp)
 (require 'language-c)
 (require 'language-erlang)
 (require 'language-ruby)
 (require 'language-python)
-
-(add-to-list
- 'load-path
- (expand-file-name "local" user-emacs-directory))
-
-(require 'windcycle)
+(require 'language-haskell)
 
 (fset 'yes-or-no-p 'y-or-n-p)
-(setq scroll-step 1)                    ; scrolling page
 
 (ensure-package-installed
  'whole-line-or-region
  'which-key
  'company
- 'better-defaults
  'exec-path-from-shell
  'yasnippet
  'restclient
  'smartparens
-
-;; Themes
+ ;; Themes
  'color-theme-sanityinc-solarized
  )
 
@@ -56,18 +55,7 @@
                'winner-mode
                'whole-line-or-region-mode)
 
-(setq-default
- which-key-idle-delay 0.9)
-
-(add-hook
- 'company-mode-hook
- '(lambda ()
-   ;; Slightly better autocomplete on tab
-   (define-key company-active-map [tab] 'company-complete-common-or-cycle)
-   (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)))
-(setq-default
- company-idle-delay 0.1
- company-minimum-prefix-length 1)
+(setq-default which-key-idle-delay 0.9)
 
 ;; Transparent emacs yay!
 (set-frame-parameter (selected-frame) 'alpha '(100))
@@ -85,7 +73,8 @@
  make-backup-files nil)
 
 ;; Load theme
-(setq my-themes '(sanityinc-solarized-dark sanityinc-solarized-light))
+(setq my-themes
+      '(sanityinc-solarized-dark sanityinc-solarized-light))
 
 (setq my-cur-theme nil)
 (defun cycle-my-theme ()
@@ -99,7 +88,6 @@
 (cycle-my-theme)
 
 (server-start)
-
 (provide 'init)
 
 (custom-set-variables
@@ -111,6 +99,8 @@
  '(cscope-do-not-update-database t)
  '(cscope-truncate-lines t)
  '(blink-matching-paren-on-screen t)
+ '(bm-highlight-style (quote bm-highlight-only-fringe))
+ '(compilation-ask-about-save nil)
  '(column-number-mode t)
  '(delete-selection-mode t)
  '(display-time-mode t)
@@ -119,6 +109,26 @@
  '(kill-whole-line t)
  '(use-file-dialog nil)
  '(x-select-enable-clipboard t)
+ '(follow-auto t)
+ '(org-support-shift-select (quote always))
+ '(tab-always-indent t)
+ '(transient-mark-mode t)
+ '(use-file-dialog nil)
+ '(x-select-enable-clipboard t)
+ '(x-select-enable-primary t)
+ '(save-interprogram-paste-before-kill t)
+ '(apropos-do-all t)
+ '(require-final-newline t)
+ '(load-prefer-newer t)
+ '(mode-compile-always-save-buffer-p t)
+ '(compilation-window-height 12)
+ '(ediff-window-setup-function 'ediff-setup-windows-plain)
+ '(ediff-split-window-function 'split-window-vertically)
+
+ '(save-place-file (concat user-emacs-directory "places"))
+;;        mouse-yank-at-point t
+;;         visible-bell t
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

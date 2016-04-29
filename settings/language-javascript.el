@@ -1,23 +1,20 @@
+;;; Code:
+
 (ensure-package-installed
  'js2-mode
  'js2-refactor
- 'tern
- 'company-tern
  'json-mode)
 
-(add-to-list
- 'auto-mode-alist
- '("\\.js\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
-(setq-default
- js-indent-level 2
- js2-basic-offset 2
- ;; Supress js2 mode errors
- js2-mode-show-parse-errors nil
- js2-mode-show-strict-warnings)
+(add-hook 'js2-mode-hook
+          (lambda ()
+             ;;
+             (setq js2-bounce-indent-p t)
+             (js2r-add-keybindings-with-prefix "C-c C-m")
+             (setq js2-basic-offset 2)))
 
-(eval-after-load
-    'flycheck
+(eval-after-load 'flycheck
   (lambda ()
     (flycheck-add-mode 'javascript-eslint 'js2-mode)
     ;; Disable jshint
@@ -26,14 +23,22 @@
      (append flycheck-disabled-checkers
 	     '(javascript-jshint)))))
 
-(defun my-javascript-mode-hook ()
-  (js2-refactor-mode 1)
-  (tern-mode 1)
-  (add-to-list 'company-backends 'tern-company))
+(add-hook 'js2-mode-hook 'ac-js2-mode)
+(setq ac-js2-evaluate-calls t)
 
-(add-hook
- 'js2-mode-hook
- 'my-javascript-mode-hook)
+(add-hook 'js2-mode-hook
+          (lambda ()
+            (local-set-key (kbd "C-c C-r") 'send-region-to-nodejs-repl-process)
+            (slime-js-minor-mode 1)))
+
+(defun send-region-to-nodejs-repl-process (start end)
+  "Send region to `nodejs-repl' process."
+  (interactive "r")
+  (save-selected-window
+    (save-excursion (nodejs-repl)))
+  (comint-send-region (get-process nodejs-repl-process-name)
+                      start end))
+
 
 (provide 'language-javascript)
 ;;; language-javascript.el ends here

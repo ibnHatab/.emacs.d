@@ -4,6 +4,8 @@
 (require 'engine-mode)
 (engine-mode 1)
 
+(setq engine/browser-function 'browse-url-chromium)
+
 (defengine duckduckgo
   "https://duckduckgo.com/?q=%s"
   :keybinding "d")
@@ -13,13 +15,12 @@
   :keybinding "g")
 
 (defengine github
-  "https://github.com/search?ref=simplesearch&q=%s")
+  "https://github.com/search?ref=simplesearch&q=%s"
+  :keybinding "h")
 
 (defengine youtube
   "http://www.youtube.com/results?aq=f&oq=&search_query=%s")
 
-(defengine archlinux
-  "https://wiki.archlinux.org/index.php?search=%s")
 
 (provide 'my-engine)
 ;;; my-engine.el ends here

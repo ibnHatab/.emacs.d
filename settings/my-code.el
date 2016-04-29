@@ -1,19 +1,16 @@
 (ensure-package-installed
  'flycheck
- 'diff-hl
  'rainbow-delimiters
  'smartparens)
 
 (smartparens-global-mode 1)
+(show-smartparens-global-mode t)
 
 ;;; Apply web mode for html
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (setq-default
  web-mode-markup-indent-offset 2
  web-mode-code-indent-offset 2)
-
-(setq mode-compile-always-save-buffer-p t)
-(setq compilation-window-height 12)
 
 (setq compilation-finish-function
       (lambda (buf str)
@@ -32,21 +29,19 @@
       (ansi-color-apply-on-region compilation-filter-start (point-max))))
   (add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer))
 
-(add-hook
- 'prog-mode-hook
- 'my-code-mode-init)
-
 (defun my-code-mode-init ()
   (my-turn-modes 1
-                 'linum-mode
+                 ;; 'linum-mode
                  'rainbow-delimiters-mode
                  'flycheck-mode
-                 'diff-hl-mode
-                 'show-paren-mode
+                 ;; 'show-paren-mode
                  'electric-indent-mode
                  'electric-pair-mode)
   (add-to-list 'write-file-functions 'delete-trailing-whitespace))
 
+(add-hook
+ 'prog-mode-hook
+ 'my-code-mode-init)
 
 (add-hook 'write-file-functions 'delete-trailing-whitespace)
 (autoload 'nuke-trailing-whitespace "whitespace" nil t) ;remove trailing
@@ -78,9 +73,6 @@ e.g. `HelloWorldString'."
         (replace-match (funcall func (match-string 1))
                        t nil))
       (widen))))
-
-(setq ediff-window-setup-function 'ediff-setup-windows-plain)
-(setq ediff-split-window-function 'split-window-vertically)
 
 (provide 'my-code)
 ;;; my-code.el ends here

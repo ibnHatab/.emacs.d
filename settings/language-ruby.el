@@ -37,8 +37,6 @@
 (eval-after-load 'enh-ruby-mode
   '(add-hook 'ruby-mode-hook 'robe-start))
 
-(smartparens-global-mode)
-(show-smartparens-global-mode t)
 (sp-with-modes '(web-mode)
                (sp-local-pair "<" ">")
                (sp-local-pair "<%" "%>"))
@@ -48,6 +46,5 @@
              (local-set-key (kbd "C-c C-c")   'ruby-send-region-and-go)
              (define-key enh-ruby-mode-map (kbd "M-TAB") 'robe-complete-at-point)
              (define-key enh-ruby-mode-map (kbd "C-c C-z") 'inf-ruby)))
-
 
 (provide 'language-ruby)
