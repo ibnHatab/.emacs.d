@@ -1,8 +1,9 @@
 (ensure-package-installed
- 'projectile
  'helm
  'helm-ag
- 'helm-projectile
+ ;; 'projectile
+ ;; 'helm-projectile
+ 'psvn
  'github-browse-file
  'magit
  'git-gutter)
@@ -19,14 +20,13 @@
  company-minimum-prefix-length 1)
 
 ;;; Enable projectile in all buffers
-(add-hook 'after-init-hook 'projectile-global-mode)
-(setq projectile-completion-system 'helm)
+;; (add-hook 'after-init-hook 'projectile-global-mode)
+;; (setq projectile-completion-system 'helm)
+;; (helm-projectile-on)
 
-(helm-projectile-on)
-
-(setq-default
- projectile-completion-system 'helm
- vc-follow-symlinks 't)
+;; (setq-default
+;;  projectile-completion-system 'helm
+;;  vc-follow-symlinks 't)
 
 ;; Helmify everything
 (helm-mode 1)

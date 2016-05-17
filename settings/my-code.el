@@ -12,14 +12,14 @@
  web-mode-markup-indent-offset 2
  web-mode-code-indent-offset 2)
 
-(setq compilation-finish-function
-      (lambda (buf str)
- 	(unless (string-match "exited abnormally" str)
- 	  ;;no errors, make the compilation window go away in a few seconds
- 	  (run-at-time
- 	   "4 sec" nil 'delete-windows-on
- 	   (get-buffer-create "*compilation*"))
- 	  (message "No Compilation Errors!"))))
+;; (setq compilation-finish-function
+;;       (lambda (buf str)
+;;  	(unless (string-match "exited abnormally" str)
+;;  	  ;;no errors, make the compilation window go away in a few seconds
+;;  	  (run-at-time
+;;  	   "4 sec" nil 'delete-windows-on
+;;  	   (get-buffer-create "*compilation*"))
+;;  	  (message "No Compilation Errors!"))))
 
 ;;; Compile buffer colorization fix
 (ignore-errors

@@ -7,9 +7,11 @@
  'expand-region
  'neotree
  'ack
+ 'cycbuf
  'bm)
 
 (setq scroll-step 1)                    ; scrolling page
+
 (require 'windcycle)
 
 (global-set-key (kbd "C-\\")    'ace-jump-mode)
@@ -59,6 +61,12 @@ the current position of point, then move it to the beginning of the line."
 (global-set-key [s-up]    'windmove-up-cycle)
 (global-set-key [s-down]  'windmove-down-cycle)
 
+;; (global-set-key  [(meta right)] 'cycbuf-switch-to-next-buffer)
+;; (global-set-key  [(meta left)] 'cycbuf-switch-to-previous-buffer)
+(global-set-key  [M-right] 'cycbuf-switch-to-next-buffer-no-timeout)
+(global-set-key  [M-left] 'cycbuf-switch-to-previous-buffer-no-timeout)
+
+
 ;; Bookmark
 (global-set-key (kbd "<C-f2>")   'bm-toggle)
 (global-set-key (kbd "<M-f2>")   'bm-next)
@@ -68,6 +76,8 @@ the current position of point, then move it to the beginning of the line."
 (global-set-key (kbd "<left-fringe> <mouse-5>") 'bm-next-mouse)
 (global-set-key (kbd "<left-fringe> <mouse-4>") 'bm-previous-mouse)
 (global-set-key (kbd "<left-fringe> <mouse-1>") 'bm-toggle-mouse)
+
+;;
 
 ;; IDO
 (ido-mode t)

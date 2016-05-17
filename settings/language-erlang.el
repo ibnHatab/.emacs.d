@@ -31,6 +31,7 @@
 (add-to-list 'elixir-mode-hook
              (defun my-emlixir-mode-hook ()
                (company-mode)
+               (alchemist-mode)
                (define-key elixir-mode-map (kbd "M-TAB")   'company-complete)
                (define-key elixir-mode-map (kbd "C-c C-s") 'alchemist-iex-project-run)
                (define-key elixir-mode-map (kbd "C-c C-z") 'alchemist-iex-start-process)
@@ -42,6 +43,11 @@
                (define-key elixir-mode-map (kbd "C-c C-t") 'alchemist-mix-test)
                (alchemist-iex-program-name "iex --sname iex")))
 
+(global-company-mode '(not  alchemist-iex))
+(add-hook 'alchemist-iex-mode-hook
+          (lambda ()
+            (turn-off-smartparens-mode)
+           ))
 
 (flycheck-define-checker elixir
   "An Elixir syntax checker using the Elixir interpreter.

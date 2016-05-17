@@ -42,7 +42,7 @@
     "Kill up to, but not including ARGth occurrence of CHAR." t)
 (global-set-key (kbd "M-z")     'zap-up-to-char)
 
-(global-set-key (kbd "M-/")     'hippie-expand)
+;; (global-set-key (kbd "M-/")     'hippie-expand)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "M-z")     'zap-up-to-char)
 
@@ -59,7 +59,11 @@
                    (advertised-undo)
                    (message "Undo Toggle")
                    ))
+
 (global-set-key "\C-z"            'undo)
+
+;; duplicate line
+(global-set-key "\C-cd" "\C-a\C- \C-n\M-w\C-y\C-p\C-a")
 
 (defun backward-delete-word (arg)
   "Delete characters backward until encountering the beginning of a word.

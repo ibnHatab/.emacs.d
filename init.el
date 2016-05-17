@@ -15,7 +15,6 @@
 
 (require 'my-package)
 (require 'my-navigation)
-(require 'my-keys)
 (require 'my-code)
 (require 'my-engine)
 (require 'my-projects)
@@ -28,6 +27,8 @@
 (require 'language-ruby)
 (require 'language-python)
 (require 'language-haskell)
+;;
+(require 'my-keys)
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -95,43 +96,66 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(browse-url-chromium-program "google-chrome-stable")
- '(cscope-do-not-update-database t)
- '(cscope-truncate-lines t)
+ '(alchemist-goto-elixir-source-dir "/local/vlad/repos/erlang/elixir.git")
+ '(alchemist-goto-erlang-source-dir "/local/vlad/repos/erlang/otp_src_18.3")
+ '(apropos-do-all t)
+ '(auto-highlight-symbol-mode-map nil t)
  '(blink-matching-paren-on-screen t)
  '(bm-highlight-style (quote bm-highlight-only-fringe))
- '(compilation-ask-about-save nil)
+ '(browse-url-chromium-program "google-chrome-stable")
  '(column-number-mode t)
+ '(company-auto-complete nil)
+ '(company-idle-delay 0.1)
+ '(company-minimum-prefix-length 1)
+ '(company-require-match nil)
+ '(company-tooltip-align-annotations t)
+ '(compilation-ask-about-save nil)
+ '(compilation-window-height 12)
+ '(cscope-do-not-update-database t)
+ '(cscope-truncate-lines t)
+ '(cursor-type (quote (bar . 4)))
+ '(cycbuf-attributes-list
+   (quote
+    (("M" 1 left cycbuf-get-modified-string)
+     ("R" 2 left cycbuf-get-readonly-string)
+     ("" 2 left ">> ")
+     ("Buffer" cycbuf-get-name-length left cycbuf-get-name)
+     ("" 1 left " ")
+     ("Directory" cycbuf-get-file-length right cycbuf-get-file-name)
+     ("" 2 left "  ")
+     ("Mode" 12 left cycbuf-get-mode-name))))
+ '(cycbuf-buffer-sort-function (quote cycbuf-sort-by-recency))
+ '(cycbuf-clear-delay 2)
+ '(cycbuf-file-name-replacements (quote (("/local/vlad/repos/" "r:/"))))
  '(delete-selection-mode t)
  '(display-time-mode t)
+ '(ediff-split-window-function (quote split-window-vertically))
+ '(ediff-window-setup-function (quote ediff-setup-windows-plain))
+ '(electric-pair-mode -1)
  '(enable-local-variables :all)
- '(global-auto-highlight-symbol-mode t)
- '(kill-whole-line t)
- '(use-file-dialog nil)
- '(x-select-enable-clipboard t)
+ '(flycheck-clang-args (quote ("-std=c++14")))
+ '(flycheck-clang-language-standard "c++14")
  '(follow-auto t)
+ '(global-auto-highlight-symbol-mode t)
+ '(global-company-mode t)
+ '(haskell-tags-on-save t)
+ '(kill-whole-line t)
+ '(load-prefer-newer t)
+ '(mode-compile-always-save-buffer-p t)
+ '(nil nil t)
  '(org-support-shift-select (quote always))
+ '(require-final-newline t)
+ '(save-interprogram-paste-before-kill t)
+ '(save-place-file (concat user-emacs-directory "places"))
  '(tab-always-indent t)
  '(transient-mark-mode t)
  '(use-file-dialog nil)
  '(x-select-enable-clipboard t)
- '(x-select-enable-primary t)
- '(save-interprogram-paste-before-kill t)
- '(apropos-do-all t)
- '(require-final-newline t)
- '(load-prefer-newer t)
- '(mode-compile-always-save-buffer-p t)
- '(compilation-window-height 12)
- '(ediff-window-setup-function 'ediff-setup-windows-plain)
- '(ediff-split-window-function 'split-window-vertically)
-
- '(save-place-file (concat user-emacs-directory "places"))
-;;        mouse-yank-at-point t
-;;         visible-bell t
-
+ '(x-select-enable-primary nil)
+ '(yas-global-mode 1 nil (yasnippet)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- ))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :foreground "yellow")))))
