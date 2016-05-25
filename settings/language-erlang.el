@@ -1,81 +1,86 @@
 ;;; Code:
 
 (ensure-package-installed
- 'edts
- 'elixir-mode
- 'alchemist
+;; 'erlang
  )
 
-(add-hook 'after-init-hook 'edts-after-init-hook)
-(defun edts-after-init-hook ()
-  (require 'edts-start)
-  (local-set-key "\C-c\C-z" 'edts-shell))
+(add-to-list 'auto-mode-alist '("rebar.config" . erlang-mode))
 
-;; Interworking
+(setq load-path (cons "/usr/lib/erlang/lib/tools-2.8.3/emacs" load-path))
 
-(setq alchemist-goto-erlang-source-dir "/local/vlad/repos/erlang/otp_src_18.3")
-(setq alchemist-goto-elixir-source-dir "/local/vlad/repos/erlang/elixir")
-
-(defun custom-erlang-mode-hook ()
-  (define-key erlang-mode-map (kbd "M-,") 'alchemist-goto-jump-back))
-(add-hook 'erlang-mode-hook 'custom-erlang-mode-hook)
+(require 'erlang-start)
+(setq erlang-root-dir "/usr/lib/erlang/")
+(setq exec-path (cons "/usr/lib/erlang/bin" exec-path))
+(setq erlang-man-root-dir "/usr/lib/erlang/man")
 
 
-;; elixir
-(require 'elixir-mode)
-(require 'alchemist)
+(push "~/.emacs.d/distel/elisp/" load-path)
+(require 'distel)
+(distel-setup)
+
+;; prevent annoying hang-on-compile
+(defvar inferior-erlang-prompt-timeout t)
+;; default node name to emacs@localhost
+(setq inferior-erlang-machine-options '("-sname" "emacs"))
+;; tell distel to default to that node
+;; (setq erl-nodename-cache
+;;       (make-symbol
+;;        (concat
+;;         "emacs@"
+;;         (car (split-string (shell-command-to-string "hostname"))))))
+
+
+(push "~/.emacs.d/company-distel/" load-path)
+
+(require 'company-distel)
+(add-to-list 'company-backends 'company-distel)
+(setq distel-completion-valid-syntax "a-zA-Z:_-")
+
+(add-hook 'erlang-mode-hook
+          (lambda ()
+            (local-set-key [(M-tab)]   'company-complete)
+            (setq inferior-erlang-machine-options
+                  '(
+                    "-sname" "emacs"
+                    ;; "-remsh" "rebar@maveric"
+                    "-remsh" "tanodb@127.0.0.1"
+                    ))
+            (auto-highlight-symbol-mode)
+            (local-set-key [(meta \()] 'erl-openparen)
+            (setq company-backends '(company-distel))))
+
+(add-hook 'erlang-shell-mode-hook
+          (lambda ()
+            (setq company-backends '(company-distel))))
+
 (require 'flycheck)
 
-(add-hook 'elixir-mode-hook 'alchemist-mode)
-
-(add-to-list 'elixir-mode-hook
-             (defun my-emlixir-mode-hook ()
-               (company-mode)
-               (alchemist-mode)
-               (define-key elixir-mode-map (kbd "M-TAB")   'company-complete)
-               (define-key elixir-mode-map (kbd "C-c C-s") 'alchemist-iex-project-run)
-               (define-key elixir-mode-map (kbd "C-c C-z") 'alchemist-iex-start-process)
-               (define-key elixir-mode-map (kbd "C-c C-r") 'alchemist-iex-send-region-and-go)
-               (define-key elixir-mode-map (kbd "C-c C-c") 'alchemist-iex-send-current-line-and-go)
-               (define-key elixir-mode-map (kbd "C-c C-d") 'alchemist-help-search-at-point)
-
-               (define-key elixir-mode-map (kbd "C-c C-l") 'alchemist-iex-compile-this-buffer)
-               (define-key elixir-mode-map (kbd "C-c C-t") 'alchemist-mix-test)
-               (alchemist-iex-program-name "iex --sname iex")))
-
-(global-company-mode '(not  alchemist-iex))
-(add-hook 'alchemist-iex-mode-hook
-          (lambda ()
-            (turn-off-smartparens-mode)
-           ))
-
-(flycheck-define-checker elixir
-  "An Elixir syntax checker using the Elixir interpreter.
-See URL `http://elixir-lang.org/'."
-  :command ("elixirc"
-            "-o" temporary-directory    ; Move compiler output out of the way
-            "--ignore-module-conflict"  ; Prevent tedious module redefinition
-                                        ; warning.
-            source)
+(flycheck-define-checker erlang-otp
+  "An Erlang syntax checker using the Erlang interpreter."
+  :command ("flycheck-erlang" source-original
+             ;;   "erlc" "-o" temporary-directory "-Wall"
+             ;; "-I" "../include" "-I" "../../include"
+             ;; "-I" "_build/default/lib/*/include"
+             ;; "-I" "../../../include" source
+             )
   :error-patterns
-  ;; Elixir compiler errors
-  ((error line-start "** (" (zero-or-more not-newline) ") "
-          (file-name) ":" line ": " (message) line-end)
-   ;; Warnings from Elixir >= 0.12.4
-   (warning line-start (file-name) ":" line ": warning:" (message) line-end)
-   ;; Warnings from older Elixir versions
-   (warning line-start (file-name) ":" line ": " (message) line-end))
-  :modes elixir-mode)
+  ((warning line-start (file-name) ":" line ": Warning:" (message) line-end)
+   (error line-start (file-name) ":" line ": " (message) line-end)))
 
-(add-to-list 'flycheck-checkers 'elixir)
+(add-hook 'erlang-mode-hook
+          (lambda ()
 
-(sp-with-modes '(elixir-mode)
-  (sp-local-pair "fn" "end"
-         :when '(("SPC" "RET"))
-         :actions '(insert navigate))
-  (sp-local-pair "do" "end"
-         :when '(("SPC" "RET"))
-         :post-handlers '(sp-ruby-def-post-handler)
-         :actions '(insert navigate)))
+            (flycheck-select-checker   'erlang-otp)
+            (flycheck-mode)))
+
+(sp-with-modes '(erlang-mode)
+  ;; (sp-local-pair "{" nil :post-handlers '(("||\n[i]" "RET")))
+  (sp-local-pair "(" ")")
+;;  (sp-local-pair  "(" ")" :insert "C-b l" :trigger "\\l(")
+  ;; (sp-local-pair "/*" "*/" :post-handlers '((" | " "SPC")
+  ;;                                           ("* ||\n[i]" "RET")))
+
+  )
+
 
 (provide 'language-erlang)

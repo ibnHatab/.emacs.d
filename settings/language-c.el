@@ -10,10 +10,6 @@
 
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
-;; (global-company-mode '(not cmake-mode))
-(add-to-list 'company-backends 'company-c-headers)
-;; (add-to-list 'company-c-headers-path-system "/usr/include/c++/5/")
-
 (cmake-ide-setup)
 
 (add-hook 'c++-mode-hook 'irony-mode)
