@@ -168,6 +168,7 @@
  '(use-file-dialog nil)
  '(x-select-enable-clipboard t)
  '(x-select-enable-primary nil)
+ '(confirm-nonexistent-file-or-buffer nil)
  '(yas-global-mode 1 nil (yasnippet)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -175,3 +176,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :foreground "yellow")))))
+
+(setq kill-buffer-query-functions
+  (remq 'process-kill-buffer-query-function
+        kill-buffer-query-functions))

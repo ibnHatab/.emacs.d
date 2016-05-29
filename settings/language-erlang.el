@@ -42,8 +42,8 @@
             (setq inferior-erlang-machine-options
                   '(
                     "-sname" "emacs"
-                    ;; "-remsh" "rebar@maveric"
-                    "-remsh" "tanodb@127.0.0.1"
+                    "-remsh" "rebar@maveric"
+                    ;; "-remsh" "rebar@127.0.0.1"
                     ))
             (auto-highlight-symbol-mode)
             (local-set-key [(meta \()] 'erl-openparen)
@@ -81,6 +81,5 @@
   ;;                                           ("* ||\n[i]" "RET")))
 
   )
-
 
 (provide 'language-erlang)
