@@ -28,6 +28,7 @@
 (require 'language-python)
 (require 'language-haskell)
 (require 'language-elixir)
+(require 'language-ocaml)
 ;;
 (require 'my-keys)
 
@@ -40,7 +41,7 @@
  'exec-path-from-shell
  'yasnippet
  'restclient
- 'smartparens
+ ;;'smartparens
  ;; Themes
  'color-theme-sanityinc-solarized
  )
@@ -100,6 +101,7 @@
  '(alchemist-goto-elixir-source-dir "/local/vlad/repos/erlang/elixir.git")
  '(alchemist-goto-erlang-source-dir "/local/vlad/repos/erlang/otp_src_18.3")
  '(apropos-do-all t)
+ '(auto-highlight-symbol-mode-map nil t)
  '(blink-matching-paren-on-screen t)
  '(bm-highlight-style (quote bm-highlight-only-fringe))
  '(browse-url-chromium-program "google-chrome-stable")
@@ -112,6 +114,7 @@
  '(company-tooltip-align-annotations t)
  '(compilation-ask-about-save nil)
  '(compilation-window-height 12)
+ '(confirm-nonexistent-file-or-buffer nil)
  '(cscope-do-not-update-database t)
  '(cscope-truncate-lines t)
  '(cursor-type (quote (bar . 4)))
@@ -125,10 +128,10 @@
      ("Directory" cycbuf-get-file-length right cycbuf-get-file-name)
      ("" 2 left "  ")
      ("Mode" 12 left cycbuf-get-mode-name))))
- '(cycbuf-buffer-sort-function (quote cycbuf-sort-by-recency))
  '(cycbuf-clear-delay 2)
  '(cycbuf-file-name-replacements (quote (("/local/vlad/repos/" "r:/"))))
  '(delete-selection-mode t)
+ '(dired-dwim-target t)
  '(display-time-mode t)
  '(ediff-split-window-function (quote split-window-vertically))
  '(ediff-window-setup-function (quote ediff-setup-windows-plain))
@@ -147,7 +150,6 @@
  '(flycheck-clang-language-standard "c++14")
  '(follow-auto t)
  '(global-auto-highlight-symbol-mode t)
- '(auto-highlight-symbol-mode-map nil t)
  '(global-company-mode t)
  '(haskell-tags-on-save t)
  '(kill-whole-line t)
@@ -155,6 +157,7 @@
  '(mode-compile-always-save-buffer-p t)
  '(nil nil t)
  '(org-support-shift-select (quote always))
+ '(pop-up-windows nil)
  '(require-final-newline t)
  '(save-interprogram-paste-before-kill t)
  '(save-place-file (concat user-emacs-directory "places"))
@@ -168,7 +171,6 @@
  '(use-file-dialog nil)
  '(x-select-enable-clipboard t)
  '(x-select-enable-primary nil)
- '(confirm-nonexistent-file-or-buffer nil)
  '(yas-global-mode 1 nil (yasnippet)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

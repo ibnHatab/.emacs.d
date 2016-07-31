@@ -3,7 +3,7 @@
  'rainbow-delimiters
  'smartparens)
 
-(smartparens-global-mode 1)
+;; (smartparens-global-mode 1)
 (show-smartparens-global-mode t)
 
 ;;; Apply web mode for html

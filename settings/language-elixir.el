@@ -25,6 +25,7 @@
              (defun my-emlixir-mode-hook ()
                (company-mode)
                (alchemist-mode)
+               (turn-off-smartparens-mode)
                (define-key elixir-mode-map (kbd "M-TAB")   'company-complete)
                (define-key elixir-mode-map (kbd "C-c C-s") 'alchemist-iex-project-run)
                (define-key elixir-mode-map (kbd "C-c C-z") 'alchemist-iex-start-process)
@@ -62,13 +63,13 @@ See URL `http://elixir-lang.org/'."
 
 (add-to-list 'flycheck-checkers 'elixir)
 
-(sp-with-modes '(elixir-mode)
-  (sp-local-pair "fn" "end"
-         :when '(("SPC" "RET"))
-         :actions '(insert navigate))
-  (sp-local-pair "do" "end"
-         :when '(("SPC" "RET"))
-         :post-handlers '(sp-ruby-def-post-handler)
-         :actions '(insert navigate)))
+;; (sp-with-modes '(elixir-mode)
+;;   (sp-local-pair "fn" "end"
+;;          :when '(("SPC" "RET"))
+;;          :actions '(insert navigate))
+;;   (sp-local-pair "do" "end"
+;;          :when '(("SPC" "RET"))
+;;          :post-handlers '(sp-ruby-def-post-handler)
+;;          :actions '(insert navigate)))
 
 (provide 'language-elixir)
