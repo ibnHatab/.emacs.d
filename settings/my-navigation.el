@@ -8,6 +8,7 @@
  'neotree
  'ack
  'cycbuf
+ 'company
  'bm)
 
 (setq scroll-step 1)                    ; scrolling page

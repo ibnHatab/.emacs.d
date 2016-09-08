@@ -1,7 +1,7 @@
 ;;; Code:
 
 (ensure-package-installed
-;; 'erlang
+ 'erlang
  )
 
 (add-to-list 'auto-mode-alist '("rebar.config" . erlang-mode))
@@ -30,7 +30,7 @@
 ;;         (car (split-string (shell-command-to-string "hostname"))))))
 
 
-(push "~/.emacs.d/company-distel/" load-path)
+(push "~/.emacs.d/distel-completion/" load-path)
 
 (require 'company-distel)
 (add-to-list 'company-backends 'company-distel)
