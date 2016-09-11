@@ -28,6 +28,7 @@
 (require 'language-python)
 (require 'language-haskell)
 (require 'language-elixir)
+(require 'language-elm)
 ;;(require 'language-ocaml)
 ;;
 (require 'my-keys)

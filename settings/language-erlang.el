@@ -54,6 +54,7 @@
             (setq company-backends '(company-distel))))
 
 (require 'flycheck)
+;; TODO https://github.com/doppioslash/dotfiles/blob/master/emacs/.emacs
 
 (flycheck-define-checker erlang-otp
   "An Erlang syntax checker using the Erlang interpreter."
