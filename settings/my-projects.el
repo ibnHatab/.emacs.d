@@ -6,6 +6,7 @@
  'psvn
  'github-browse-file
  'magit
+ 'projectile
  'git-gutter)
 
 (add-hook

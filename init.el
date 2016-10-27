@@ -26,8 +26,14 @@
 ;;(require 'language-erlang)
 ;;(require 'language-ruby)
 (require 'language-python)
+<<<<<<< HEAD
 ;;(require 'language-haskell)
 ;;(require 'language-elixir)
+=======
+(require 'language-haskell)
+(require 'language-elixir)
+(require 'language-elm)
+>>>>>>> 8fdd905b04b8f09ffa7a34d466e683ca00354680
 ;;(require 'language-ocaml)
 ;;
 (require 'my-keys)
