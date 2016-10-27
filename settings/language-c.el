@@ -5,6 +5,11 @@
  'cmake-mode
  'cmake-ide
  ;;
+ ;; 'irony
+ ;; 'flycheck-irony
+ ;; 'company-irony
+ ;; 'company-irony-c-headers
+ ;;
  'xcscope
  'helm-cscope)
 
@@ -28,24 +33,18 @@
 
 (setq cscope-database-regexps
       '(
-        ("^/local/vlad/repos/megazone/sbts_intro_path/PromisesCPP/"
+        ("^/home/axadmin/repos/oam"
          ( t )
-         ( "/home/vlad/.cscope/boost/cscope.out" ("-d"))
-         ( "/home/vlad/.cscope/stdcpp/cscope.out" ("-d"))
+         ( "/local/axadmin/repos/megazone/fereco/lim" ("-d"))
+         ( "/local/axadmin/repos/megazone/fereco/liboam" ("-d"))
          )
-        ("^/local/vlad/repos/megazone/fereco/fareco"
-         ( t )
-         ( "/local/vlad/repos/megazone/fereco/lim" ("-d"))
-         ( "/local/vlad/repos/megazone/fereco/liboam" ("-d"))
 
-         )
-        ;; ( "^/udir/vlad/repos/femto-henb"
-        ;;   ( t )
-        ;;   ( "/udir/vlad/repos/femto-cpe")
-        ;;   t
-        ;;   ( "/udir/vlad/repos/net/buildroot-2011.11/output/build/linux-3.1/"
-        ;;     ("-d" "-I/usr/include"))
-        ;;   )
+        ( "^/home/axadmin/repos/tas"
+          ( t )
+          ( "/home/axadmin/repos/tas/src")
+          ( "/home/axadmin/repos/sdk/sysroots/core2-64-nokia-linux/usr"
+            ("-d" "-I/usr/include"))
+          )
       ))
 
 (custom-set-variables
@@ -81,6 +80,23 @@
   (sp-local-pair "{" nil :post-handlers '(("||\n[i]" "RET")))
   (sp-local-pair "/*" "*/" :post-handlers '((" | " "SPC")
                                             ("* ||\n[i]" "RET"))))
+
+(eval-after-load 'flycheck
+  '(progn
+     (require 'flycheck-google-cpplint)
+     ;; Add Google C++ Style checker.
+     ;; In default, syntax checked by Clang and Cppcheck.
+     (flycheck-add-next-checker 'c/c++-clang
+                                '(warning . c/c++-googlelint))
+     (local-set-key "\C-cc" 'flycheck-compile)
+     ))
+
+(custom-set-variables
+ '(flycheck-c/c++-googlelint-executable "/home/axadmin/repo/cpplint/cpplint.py")
+ '(flycheck-googlelint-verbose "3")
+ '(flycheck-googlelint-filter "-whitespace,+whitespace/braces")
+ '(flycheck-googlelint-root "project/src")
+ '(flycheck-googlelint-linelength "120"))
 
 (provide 'language-c)
 ;;; language-c.el ends here

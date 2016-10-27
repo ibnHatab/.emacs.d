@@ -10,6 +10,20 @@
 ;; (elpy-use-ipython)
 ;; (setq elpy-rpc-backend "jedi")
 
+
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:complete-on-dot t)
+
+(add-hook 'python-mode-hook
+          (lambda ()
+
+            (local-set-key (kbd "M-.") 'jedi:goto-definition)
+            (local-set-key (kbd "M-,") 'jedi:goto-definition-pop-marker)
+            (local-set-key (kbd "M-\\") 'helm-jedi-related-names)
+            (local-set-key (kbd "C-c C-d") 'jedi:show-doc)))
+
+(require 'company)
+
 (defun my/python-mode-hook ()
   (add-to-list 'company-backends 'company-jedi))
 (add-hook 'python-mode-hook 'my/python-mode-hook)
