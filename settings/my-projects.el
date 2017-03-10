@@ -1,12 +1,15 @@
 (ensure-package-installed
  'helm
  'helm-ag
- ;; 'projectile
  ;; 'helm-projectile
  'psvn
  'github-browse-file
  'magit
  'projectile
+ 'goto-chg
+ 'popup-imenu
+ 'undo-tree
+ 'highlight-symbol
  'git-gutter)
 
 (add-hook
@@ -40,9 +43,17 @@
  helm-apropos-fuzzy-match 't
  helm-lisp-completion-at-point 't)
 
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "C-x b") 'helm-buffers-list)
+(global-set-key (kbd "M-x")     'helm-M-x)
+(global-set-key (kbd "C-x b")   'helm-buffers-list)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key [M-right]       'goto-last-change-reverse)
+(global-set-key [M-left]        'goto-last-change-reverse)
+(global-set-key (kbd "s-f")     'projectile-find-file)
+(global-set-key (kbd "s-F")     'projectile-ag)
+(global-set-key (kbd "s-/")     'undo-tree-visualize)
+(global-set-key (kbd "s-H")     'highlight-symbol)
+(global-set-key (kbd "M-i")     'popup-imenu)
+
 
 (defcustom git-grep-switches "-E -I -nH -i --no-color"
   "Switches to pass to `git grep'."

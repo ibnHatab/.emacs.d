@@ -5,9 +5,13 @@
       '(
         ("no_proxy" . "^\\(localhost\\|maveric\\|10.*\\|0:4587\\|127.*\\|.*:24969\\)")
         ("no_proxy" . ".*:4587")
-        ("http"     . "135.245.192.6:8000")
-        ("https"    . "135.245.192.6:8000")))
+        ("http"     . "135.245.192.7:8000")
+        ("https"    . "135.245.192.7:8000")))
 
+(setq url-http-proxy-basic-auth-storage
+    (list (list "135.245.192.7:8000"
+                (cons "Input your LDAP UID !"
+                      (base64-encode-string "vkinzers:zaq1!QAZ")))))
 (require 'package)
 
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))

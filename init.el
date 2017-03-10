@@ -27,9 +27,12 @@
 ;;(require 'language-ruby)
 (require 'language-python)
 (require 'language-haskell)
+;;(require 'language-intero)
 (require 'language-elixir)
 (require 'language-elm)
+(require 'language-psc)
 ;;(require 'language-ocaml)
+;;(require 'language-scala)
 ;;
 (require 'my-keys)
 
@@ -107,8 +110,6 @@
  '(bm-highlight-style (quote bm-highlight-only-fringe))
  '(browse-url-chromium-program "google-chrome-stable")
  '(column-number-mode t)
- '(company-auto-complete nil)
- '(company-clang-executable nil)
  '(company-global-modes (quote (not js2-mode cmake-mode)))
  '(company-idle-delay 0.1)
  '(company-minimum-prefix-length 1)
@@ -147,12 +148,18 @@
  '(edts-log-level (quote debug))
  '(electric-pair-mode -1)
  '(enable-local-variables :all)
+ '(ensime-startup-notification nil t)
  '(erl-company-popup-help 1)
- '(flycheck-clang-args (quote ("-std=c++14")))
+ '(flycheck-c/c++-googlelint-executable "/home/axadmin/repo/cpplint/cpplint.py")
+ '(flycheck-clang-args (quote ("-std=c++11")))
  '(flycheck-clang-include-path
    (quote
     ("/home/axadmin/repo/tas/sdk/sysroots/core2-64-nokia-linux/usr/include" "/home/axadmin/repo/tas//sdk/sysroots/core2-64-nokia-linux/usr/include/vtc/vtc_intf")))
  '(flycheck-clang-language-standard "c++11")
+ '(flycheck-googlelint-filter "-whitespace,+whitespace/braces")
+ '(flycheck-googlelint-linelength "120")
+ '(flycheck-googlelint-root "project/src")
+ '(flycheck-googlelint-verbose "3")
  '(follow-auto t)
  '(global-auto-highlight-symbol-mode t)
  '(global-company-mode t)
@@ -163,16 +170,20 @@
  '(nil nil t)
  '(org-support-shift-select (quote always))
  '(pop-up-windows nil)
+ '(projectile-mode t nil (projectile))
+ '(projectile-mode-line
+   (quote
+    (:eval
+     (if
+         (file-remote-p default-directory)
+         " Projectile"
+       (format " Proj[%s]"
+               (projectile-project-name))))))
  '(require-final-newline t)
  '(save-interprogram-paste-before-kill t)
  '(save-place-file (concat user-emacs-directory "places"))
  '(tab-always-indent t)
  '(transient-mark-mode t)
- '(url-proxy-services
-   (quote
-    (("no_proxy" . "^\\(localhost\\|0\\)")
-     ("http" . "135.245.192.6:8000")
-     ("https" . "135.245.192.6:8000"))))
  '(use-file-dialog nil)
  '(x-select-enable-clipboard t)
  '(x-select-enable-primary nil)

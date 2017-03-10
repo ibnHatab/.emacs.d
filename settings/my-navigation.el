@@ -7,7 +7,7 @@
  'expand-region
  'neotree
  'ack
- 'cycbuf
+;; 'cycbuf
  'company
  'bm)
 
@@ -64,8 +64,8 @@ the current position of point, then move it to the beginning of the line."
 
 ;; (global-set-key  [(meta right)] 'cycbuf-switch-to-next-buffer)
 ;; (global-set-key  [(meta left)] 'cycbuf-switch-to-previous-buffer)
-(global-set-key  [M-right] 'cycbuf-switch-to-next-buffer-no-timeout)
-(global-set-key  [M-left] 'cycbuf-switch-to-previous-buffer-no-timeout)
+;; (global-set-key  [M-right] 'cycbuf-switch-to-next-buffer-no-timeout)
+;; (global-set-key  [M-left] 'cycbuf-switch-to-previous-buffer-no-timeout)
 
 
 ;; Bookmark
