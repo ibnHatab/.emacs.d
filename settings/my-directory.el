@@ -20,4 +20,8 @@
                          (t
                           "[no file]")))))
 
+(setq tramp-default-method "ssh")
+(setq tramp-chunksize 500)
+(eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
+
 (provide 'my-directory)

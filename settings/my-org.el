@@ -6,14 +6,12 @@
 (require 'org-install)
 (require 'org)
 
-
 (org-babel-do-load-languages 'org-babel-load-languages
     '(
       (sh . t)
       (python . t)
     )
 )
-
 (custom-set-variables
  '(org-confirm-babel-evaluate nil)
  '(org-support-shift-select t))
