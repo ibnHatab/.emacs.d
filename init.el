@@ -20,7 +20,7 @@
 (require 'my-projects)
 (require 'my-directory)
 (require 'my-org)
-(require 'language-javascript)
+;;(require 'language-javascript)
 (require 'language-lisp)
 (require 'language-c)
 ;;(require 'language-erlang)
@@ -33,6 +33,8 @@
 (require 'language-psc)
 ;;(require 'language-ocaml)
 ;;(require 'language-scala)
+(require 'language-ttcn)
+(require 'language-rust)
 ;;
 (require 'my-keys)
 
