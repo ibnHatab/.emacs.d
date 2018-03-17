@@ -108,6 +108,7 @@
  '(apropos-do-all t)
  '(auto-highlight-symbol-mode-map nil t)
  '(blink-matching-paren-on-screen t)
+ '(bm-cycle-all-buffers t)
  '(bm-highlight-style (quote bm-highlight-only-fringe))
  '(browse-url-chromium-program "google-chrome-stable")
  '(column-number-mode t)

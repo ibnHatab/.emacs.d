@@ -51,7 +51,7 @@
 (global-set-key (kbd "s-f")     'projectile-find-file)
 (global-set-key (kbd "s-F")     'projectile-ag)
 (global-set-key (kbd "s-/")     'undo-tree-visualize)
-(global-set-key (kbd "s-H")     'highlight-symbol)
+(global-set-key (kbd "s-S")     'highlight-symbol)
 (global-set-key (kbd "M-i")     'popup-imenu)
 
 
