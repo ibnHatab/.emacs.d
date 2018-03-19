@@ -23,10 +23,11 @@
 ;;(require 'language-javascript)
 (require 'language-lisp)
 (require 'language-c)
+(require 'language-go)
 ;;(require 'language-erlang)
 ;;(require 'language-ruby)
 (require 'language-python)
-(require 'language-haskell)
+;;(require 'language-haskell)
 ;;(require 'language-intero)
 ;; (require 'language-elixir)
 ;; (require 'language-elm)
@@ -212,6 +213,7 @@
  '(use-file-dialog nil)
  '(x-select-enable-clipboard t)
  '(x-select-enable-primary nil)
+ '(show-paren-mode 1)
  '(yas-global-mode 1 nil (yasnippet)))
 
 (setq browse-url-browser-function 'browse-url-generic browse-url-generic-program "open")
@@ -221,7 +223,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :foreground "yellow")))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :foreground "yellow"))))
+ '(go-guru-hl-identifier-face ((t (:inherit highlight :underline "yellow")))))
 
 (setq kill-buffer-query-functions
   (remq 'process-kill-buffer-query-function
