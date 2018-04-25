@@ -9,6 +9,7 @@
  'go-autocomplete
  'go-errcheck
  'go-eldoc
+ 'go-snippets
  'gorepl-mode
 )
 (require 'go-guru)
@@ -24,7 +25,7 @@
             (setq tab-width 4)
             (local-set-key (kbd "M-.")       'godef-jump)
             (local-set-key (kbd "C-c C-r")   'go-remove-unused-imports)
-            (local-set-key (kbd "C-c C-r")   'go-remove-unused-imports)
+            (local-set-key (kbd "C-c C-d")   'godoc-at-point)
             (local-set-key (kbd "C-c i")     'go-goto-imports)
             (local-set-key (kbd "C-c <tab>") 'gofmt-before-save)))
 
