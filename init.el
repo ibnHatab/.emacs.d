@@ -42,6 +42,9 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
+(setq company-global-modes '(not org-mode go-mode js2-mode cmake-mode shell-mode))
+(setq company-dabbrev-other-buffers nil)
+
 (ensure-package-installed
  'whole-line-or-region
  'which-key
@@ -60,7 +63,7 @@
 ;; Enable global-modes
 (my-turn-modes 1
                'global-auto-revert-mode
-               'global-company-mode
+;;               'global-company-mode
                'global-hl-line-mode
                'which-key-mode
                'winner-mode
@@ -183,7 +186,7 @@
      ("\\\\.ino\\\\'" flymake-simple-make-init nil nil))))
  '(follow-auto t)
  '(global-auto-highlight-symbol-mode t)
- '(global-company-mode t)
+ '(global-company-mode nil)
  '(haskell-tags-on-save t)
  '(kill-whole-line t)
  '(load-prefer-newer t)
@@ -210,13 +213,16 @@
  '(rng-validate-mode 0)
  '(save-interprogram-paste-before-kill t)
  '(save-place-file (concat user-emacs-directory "places"))
+<<<<<<< HEAD
+=======
+ '(shell-file-name "/bin/bash")
+>>>>>>> 658377ebf07fa4ee00a67af056ed9017274e8a16
  '(show-paren-mode t)
  '(tab-always-indent t)
  '(tool-bar-mode nil)
  '(use-file-dialog nil)
  '(x-select-enable-clipboard t)
  '(x-select-enable-primary nil)
- '(show-paren-mode 1)
  '(yas-global-mode 1 nil (yasnippet)))
 
 (setq browse-url-browser-function 'browse-url-generic browse-url-generic-program "open")
