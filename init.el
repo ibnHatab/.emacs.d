@@ -28,11 +28,11 @@
 (require 'language-python)
 (require 'language-haskell)
 ;;(require 'language-intero)
-(require 'language-elixir)
-(require 'language-elm)
-(require 'language-psc)
+;;(require 'language-elixir)
+;;(require 'language-elm)
+;;(require 'language-psc)
 ;;(require 'language-ocaml)
-;;(require 'language-scala)
+(require 'language-scala)
 ;;
 (require 'my-keys)
 
@@ -149,7 +149,8 @@
  '(edts-log-level (quote debug))
  '(electric-pair-mode -1)
  '(enable-local-variables :all)
- '(ensime-startup-notification nil t)
+ '(ensime-startup-notification nil)
+ '(ensime-startup-snapshot-notification nil)
  '(erl-company-popup-help 1)
  '(flycheck-c/c++-googlelint-executable "/home/axadmin/repo/cpplint/cpplint.py")
  '(flycheck-clang-args (quote ("-std=c++11")))
@@ -167,6 +168,7 @@
  '(haskell-tags-on-save t)
  '(kill-whole-line t)
  '(load-prefer-newer t)
+ '(menu-bar-mode nil)
  '(mode-compile-always-save-buffer-p t)
  '(nil nil t)
  '(org-support-shift-select (quote always))
@@ -183,8 +185,9 @@
  '(require-final-newline t)
  '(save-interprogram-paste-before-kill t)
  '(save-place-file (concat user-emacs-directory "places"))
+ '(show-paren-mode t)
  '(tab-always-indent t)
- '(transient-mark-mode t)
+ '(tool-bar-mode nil)
  '(use-file-dialog nil)
  '(x-select-enable-clipboard t)
  '(x-select-enable-primary nil)
@@ -194,6 +197,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 143 :width normal))))
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :foreground "yellow")))))
 
 (setq kill-buffer-query-functions
