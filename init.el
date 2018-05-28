@@ -27,23 +27,30 @@
 (require 'my-projects)
 (require 'my-directory)
 (require 'my-org)
-(require 'language-javascript)
+;;(require 'language-javascript)
 (require 'language-lisp)
 (require 'language-c)
+(require 'language-go)
 ;;(require 'language-erlang)
 ;;(require 'language-ruby)
 (require 'language-python)
-(require 'language-haskell)
+;;(require 'language-haskell)
 ;;(require 'language-intero)
-(require 'language-elixir)
-(require 'language-elm)
-(require 'language-psc)
+;;(require 'language-elixir)
+;;(require 'language-elm)
+;;(require 'language-psc)
 ;;(require 'language-ocaml)
 ;;(require 'language-scala)
+;; (require 'language-ttcn)
+;; (require 'language-rust)
+;; (require 'language-tla)
 ;;
 (require 'my-keys)
 
 (fset 'yes-or-no-p 'y-or-n-p)
+
+(setq company-global-modes '(not org-mode go-mode js2-mode cmake-mode shell-mode))
+(setq company-dabbrev-other-buffers nil)
 
 (ensure-package-installed
  'whole-line-or-region
@@ -63,7 +70,7 @@
 ;; Enable global-modes
 (my-turn-modes 1
                'global-auto-revert-mode
-               'global-company-mode
+;;               'global-company-mode
                'global-hl-line-mode
                'which-key-mode
                'winner-mode
@@ -156,7 +163,8 @@
  '(edts-log-level (quote debug))
  '(electric-pair-mode -1)
  '(enable-local-variables :all)
- '(ensime-startup-notification nil t)
+ '(ensime-startup-notification nil)
+ '(ensime-startup-snapshot-notification nil)
  '(erl-company-popup-help 1)
  '(flycheck-c/c++-googlelint-executable "/home/axadmin/repo/cpplint/cpplint.py")
  '(flycheck-clang-args (quote ("-std=c++11")))
@@ -168,14 +176,33 @@
  '(flycheck-googlelint-linelength "120")
  '(flycheck-googlelint-root "project/src")
  '(flycheck-googlelint-verbose "3")
+ '(flymake-allowed-file-name-masks
+   (quote
+    (("\\.l?hs\\'" haskell-flymake-init nil nil)
+     ("\\.\\(?:c\\(?:pp\\|xx\\|\\+\\+\\)?\\|CC\\)\\'" flymake-simple-make-init nil nil)
+     ("\\.xml\\'" flymake-xml-init nil nil)
+     ("\\.html?\\'" flymake-xml-init nil nil)
+     ("\\.cs\\'" flymake-simple-make-init nil nil)
+     ("\\.p[ml]\\'" flymake-perl-init nil nil)
+     ("\\.php[345]?\\'" flymake-php-init nil nil)
+     ("\\.h\\'" flymake-master-make-header-init flymake-master-cleanup nil)
+     ("\\.java\\'" flymake-simple-make-java-init flymake-simple-java-cleanup nil)
+     ("[0-9]+\\.tex\\'" flymake-master-tex-init flymake-master-cleanup nil)
+     ("\\.tex\\'" flymake-simple-tex-init nil nil)
+     ("\\.idl\\'" flymake-simple-make-init nil nil)
+     ("\\\\.ino\\\\'" flymake-simple-make-init nil nil))))
  '(follow-auto t)
  '(global-auto-highlight-symbol-mode t)
- '(global-company-mode t)
+ '(global-company-mode nil)
  '(haskell-tags-on-save t)
  '(kill-whole-line t)
  '(load-prefer-newer t)
+ '(menu-bar-mode nil)
  '(mode-compile-always-save-buffer-p t)
  '(nil nil t)
+ '(org-agenda-files nil)
+ '(org-babel-load-languages (quote ((awk . t) (python . t) (sh . t))))
+ '(org-confirm-babel-evaluate nil)
  '(org-support-shift-select (quote always))
  '(package-selected-packages
    (quote
@@ -190,22 +217,39 @@
          " Projectile"
        (format " Proj[%s]"
                (projectile-project-name))))))
+ '(python-shell-interpreter "/usr/bin/ipython")
  '(require-final-newline t)
+ '(rng-nxml-auto-validate-flag nil)
+ '(rng-validate-mode 0)
  '(save-interprogram-paste-before-kill t)
  '(save-place-file (concat user-emacs-directory "places"))
  '(select-enable-clipboard t)
  '(select-enable-primary nil)
+ '(shell-file-name "/bin/bash")
+ '(show-paren-mode t)
  '(tab-always-indent t)
- '(transient-mark-mode t)
+ '(tool-bar-mode nil)
  '(use-file-dialog nil)
  '(yas-global-mode 1 nil (yasnippet)))
+
+(setq browse-url-browser-function 'browse-url-generic browse-url-generic-program "open")
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 143 :width normal))))
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :foreground "yellow")))))
 
 (setq kill-buffer-query-functions
   (remq 'process-kill-buffer-query-function
         kill-buffer-query-functions))
+
+
+(add-hook 'nxml-mode-hook 'rng-set-vacuous-schema)
+
+
+(defalias 'xml-mode 'sgml-mode
+    "Use `sgml-mode' instead of nXML's `xml-mode'.")
+(put 'scroll-left 'disabled nil)
