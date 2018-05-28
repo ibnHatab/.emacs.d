@@ -1,5 +1,12 @@
 ;;; Code:
 
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (add-to-list
  'load-path
  (expand-file-name "settings" user-emacs-directory))
@@ -170,6 +177,9 @@
  '(mode-compile-always-save-buffer-p t)
  '(nil nil t)
  '(org-support-shift-select (quote always))
+ '(package-selected-packages
+   (quote
+    (color-theme-sanityinc-solarized restclient exec-path-from-shell which-key whole-line-or-region psci psc-ide purescript-mode flycheck-elm elm-mode alchemist elixir-mode ac-haskell-process haskell-mode ein company-jedi helm-cscope clang-format xcscope cmake-ide cmake-mode undo-tree tern smartparens rainbow-delimiters psvn projectile popup-imenu paredit neotree magit json-mode js2-refactor highlight-symbol helm-ag goto-chg github-browse-file git-gutter flycheck expand-region engine-mode company bm ack ace-jump-mode ac-js2)))
  '(pop-up-windows nil)
  '(projectile-mode t nil (projectile))
  '(projectile-mode-line
@@ -183,11 +193,11 @@
  '(require-final-newline t)
  '(save-interprogram-paste-before-kill t)
  '(save-place-file (concat user-emacs-directory "places"))
+ '(select-enable-clipboard t)
+ '(select-enable-primary nil)
  '(tab-always-indent t)
  '(transient-mark-mode t)
  '(use-file-dialog nil)
- '(x-select-enable-clipboard t)
- '(x-select-enable-primary nil)
  '(yas-global-mode 1 nil (yasnippet)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
