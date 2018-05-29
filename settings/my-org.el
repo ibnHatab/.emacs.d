@@ -6,23 +6,20 @@
 
 (require 'org-install)
 (require 'org)
-<<<<<<< HEAD
-(require 'reveal)
-=======
 (require 'ox-reveal)
 
 (define-obsolete-function-alias 'org-define-error 'define-error)
 
-(setq org-reveal-root "file:///home/axadmin/BSTAT/reveal.js")
+(setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/2.5.0/")
 (setq org-reveal-title-slide nil)
->>>>>>> c9d07bd638eeb31fbe580c26e712e861765dfff1
 
 (org-babel-do-load-languages 'org-babel-load-languages
     '(
       (sh . t)
       (python . t)
     )
-)
+    )
+
 (custom-set-variables
  '(org-confirm-babel-evaluate nil)
  '(org-support-shift-select t))

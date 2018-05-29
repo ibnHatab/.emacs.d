@@ -36,15 +36,9 @@
 (require 'language-python)
 ;;(require 'language-haskell)
 ;;(require 'language-intero)
-<<<<<<< HEAD
-;; (require 'language-elixir)
-;; (require 'language-elm)
 (require 'language-psc)
-=======
 ;;(require 'language-elixir)
 ;;(require 'language-elm)
-;;(require 'language-psc)
->>>>>>> c9d07bd638eeb31fbe580c26e712e861765dfff1
 ;;(require 'language-ocaml)
 ;;(require 'language-scala)
 ;; (require 'language-ttcn)
