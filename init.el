@@ -213,10 +213,7 @@
  '(rng-validate-mode 0)
  '(save-interprogram-paste-before-kill t)
  '(save-place-file (concat user-emacs-directory "places"))
-<<<<<<< HEAD
-=======
  '(shell-file-name "/bin/bash")
->>>>>>> 658377ebf07fa4ee00a67af056ed9017274e8a16
  '(show-paren-mode t)
  '(tab-always-indent t)
  '(tool-bar-mode nil)
@@ -232,7 +229,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 143 :width normal))))
+ '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 130 :width normal))))
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :foreground "yellow")))))
 
 (setq kill-buffer-query-functions

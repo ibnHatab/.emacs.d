@@ -11,6 +11,11 @@
  'go-eldoc
  'go-snippets
  'gorepl-mode
+ 'go-dlv
+ 'go-fill-struct
+ 'go-gen-test
+ 'go-projectile
+ 'go-rename
 )
 (require 'go-guru)
 (require 'go-autocomplete)
@@ -25,6 +30,7 @@
             (setq tab-width 4)
             (local-set-key (kbd "M-.")       'godef-jump)
             (local-set-key (kbd "C-c C-r")   'go-remove-unused-imports)
+            (local-set-key (kbd "C-c C-n")   'go-rename)
             (local-set-key (kbd "C-c C-d")   'godoc-at-point)
             (local-set-key (kbd "C-c i")     'go-goto-imports)
             (local-set-key (kbd "C-c <tab>") 'gofmt-before-save)))

@@ -5,6 +5,12 @@
 
 (require 'org-install)
 (require 'org)
+(require 'ox-reveal)
+
+(define-obsolete-function-alias 'org-define-error 'define-error)
+
+(setq org-reveal-root "file:///home/axadmin/BSTAT/reveal.js")
+(setq org-reveal-title-slide nil)
 
 (org-babel-do-load-languages 'org-babel-load-languages
     '(
@@ -20,6 +26,9 @@
  "Open a file containing refil collection"
  (interactive)
  (find-file org-default-notes-file))
+
+(global-set-key (kbd "C-c l") 'org-store-link)
+
 
 ;;(global-set-key (kbd "<f10> <f10>")  'org-cycle-agenda-files)
 ;;(global-set-key (kbd "<f10> c")     'cfw:open-org-calendar)
