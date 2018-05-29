@@ -31,7 +31,7 @@
 ;;(require 'language-intero)
 ;; (require 'language-elixir)
 ;; (require 'language-elm)
-;; (require 'language-psc)
+(require 'language-psc)
 ;;(require 'language-ocaml)
 ;;(require 'language-scala)
 ;; (require 'language-ttcn)

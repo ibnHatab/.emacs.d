@@ -1,10 +1,12 @@
 ;;; Code:
 
 (ensure-package-installed
+ 'ox-reveal
  )
 
 (require 'org-install)
 (require 'org)
+(require 'reveal)
 
 (org-babel-do-load-languages 'org-babel-load-languages
     '(
