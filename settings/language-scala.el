@@ -18,3 +18,5 @@
             (ensime-mode)
             (setq ensime-startup-notification nil)
             (scala-mode:goto-start-of-code)))
+
+(provide 'language-scala)

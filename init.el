@@ -1,5 +1,12 @@
 ;;; Code:
 
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (add-to-list
  'load-path
  (expand-file-name "settings" user-emacs-directory))
@@ -29,9 +36,15 @@
 (require 'language-python)
 ;;(require 'language-haskell)
 ;;(require 'language-intero)
+<<<<<<< HEAD
 ;; (require 'language-elixir)
 ;; (require 'language-elm)
 (require 'language-psc)
+=======
+;;(require 'language-elixir)
+;;(require 'language-elm)
+;;(require 'language-psc)
+>>>>>>> c9d07bd638eeb31fbe580c26e712e861765dfff1
 ;;(require 'language-ocaml)
 ;;(require 'language-scala)
 ;; (require 'language-ttcn)
@@ -156,7 +169,8 @@
  '(edts-log-level (quote debug))
  '(electric-pair-mode -1)
  '(enable-local-variables :all)
- '(ensime-startup-notification nil t)
+ '(ensime-startup-notification nil)
+ '(ensime-startup-snapshot-notification nil)
  '(erl-company-popup-help 1)
  '(flycheck-c/c++-googlelint-executable "/home/axadmin/repo/cpplint/cpplint.py")
  '(flycheck-clang-args (quote ("-std=c++11")))
@@ -189,12 +203,16 @@
  '(haskell-tags-on-save t)
  '(kill-whole-line t)
  '(load-prefer-newer t)
+ '(menu-bar-mode nil)
  '(mode-compile-always-save-buffer-p t)
  '(nil nil t)
  '(org-agenda-files nil)
  '(org-babel-load-languages (quote ((awk . t) (python . t) (sh . t))))
  '(org-confirm-babel-evaluate nil)
  '(org-support-shift-select (quote always))
+ '(package-selected-packages
+   (quote
+    (color-theme-sanityinc-solarized restclient exec-path-from-shell which-key whole-line-or-region psci psc-ide purescript-mode flycheck-elm elm-mode alchemist elixir-mode ac-haskell-process haskell-mode ein company-jedi helm-cscope clang-format xcscope cmake-ide cmake-mode undo-tree tern smartparens rainbow-delimiters psvn projectile popup-imenu paredit neotree magit json-mode js2-refactor highlight-symbol helm-ag goto-chg github-browse-file git-gutter flycheck expand-region engine-mode company bm ack ace-jump-mode ac-js2)))
  '(pop-up-windows nil)
  '(projectile-mode t nil (projectile))
  '(projectile-mode-line
@@ -211,13 +229,13 @@
  '(rng-validate-mode 0)
  '(save-interprogram-paste-before-kill t)
  '(save-place-file (concat user-emacs-directory "places"))
+ '(select-enable-clipboard t)
+ '(select-enable-primary nil)
  '(shell-file-name "/bin/bash")
  '(show-paren-mode t)
  '(tab-always-indent t)
- '(transient-mark-mode t)
+ '(tool-bar-mode nil)
  '(use-file-dialog nil)
- '(x-select-enable-clipboard t)
- '(x-select-enable-primary nil)
  '(yas-global-mode 1 nil (yasnippet)))
 
 (setq browse-url-browser-function 'browse-url-generic browse-url-generic-program "open")
@@ -227,8 +245,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :foreground "yellow"))))
- '(go-guru-hl-identifier-face ((t (:inherit highlight :underline "yellow")))))
+ '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 130 :width normal))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :foreground "yellow")))))
 
 (setq kill-buffer-query-functions
   (remq 'process-kill-buffer-query-function
