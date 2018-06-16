@@ -1,7 +1,7 @@
 (ensure-package-installed
  'helm
  'helm-ag
- ;; 'helm-projectile
+ 'helm-projectile
  'psvn
  'github-browse-file
  'magit
@@ -23,14 +23,7 @@
  company-idle-delay 0.1
  company-minimum-prefix-length 1)
 
-;;; Enable projectile in all buffers
-;; (add-hook 'after-init-hook 'projectile-global-mode)
-;; (setq projectile-completion-system 'helm)
-;; (helm-projectile-on)
 
-;; (setq-default
-;;  projectile-completion-system 'helm
-;;  vc-follow-symlinks 't)
 
 ;; Helmify everything
 (helm-mode 1)
@@ -41,7 +34,22 @@
  helm-M-x-fuzzy-match 't
  helm-imenu-fuzzy-match 't
  helm-apropos-fuzzy-match 't
- helm-lisp-completion-at-point 't)
+ helm-lisp-completion-at-point 't
+ helm-semantic-fuzzy-match t
+ helm-imenu-fuzzy-match t
+ )
+
+
+;; open helm buffer inside current window, not occupy whole other window
+(setq helm-split-window-in-side-p t)
+(setq helm-autoresize-max-height 50)
+(setq helm-autoresize-min-height 30)
+(helm-autoresize-mode 1)
+
+
+(global-set-key (kbd "C-c h") 'helm-command-prefix)
+(global-unset-key (kbd "C-x c"))
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
 
 (global-set-key (kbd "M-x")     'helm-M-x)
 (global-set-key (kbd "C-x b")   'helm-buffers-list)
@@ -53,6 +61,15 @@
 (global-set-key (kbd "s-/")     'undo-tree-visualize)
 (global-set-key (kbd "s-S")     'highlight-symbol)
 (global-set-key (kbd "M-i")     'popup-imenu)
+
+(helm-mode 1)
+
+;;; Enable projectile in all buffers
+;;(add-hook 'after-init-hook 'projectile-global-mode)
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
+
 
 
 (defcustom git-grep-switches "-E -I -nH -i --no-color"
