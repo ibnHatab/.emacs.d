@@ -1,17 +1,25 @@
 ;;; Code:
 
 (ensure-package-installed
+ 'ox-reveal
  )
 
 (require 'org-install)
 (require 'org)
+(require 'ox-reveal)
+
+(define-obsolete-function-alias 'org-define-error 'define-error)
+
+(setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/2.5.0/")
+(setq org-reveal-title-slide nil)
 
 (org-babel-do-load-languages 'org-babel-load-languages
     '(
       (sh . t)
       (python . t)
     )
-)
+    )
+
 (custom-set-variables
  '(org-confirm-babel-evaluate nil)
  '(org-support-shift-select t))
@@ -20,6 +28,9 @@
  "Open a file containing refil collection"
  (interactive)
  (find-file org-default-notes-file))
+
+(global-set-key (kbd "C-c l") 'org-store-link)
+
 
 ;;(global-set-key (kbd "<f10> <f10>")  'org-cycle-agenda-files)
 ;;(global-set-key (kbd "<f10> c")     'cfw:open-org-calendar)

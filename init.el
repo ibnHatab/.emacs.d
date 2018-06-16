@@ -1,5 +1,12 @@
 ;;; Code:
 
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (add-to-list
  'load-path
  (expand-file-name "settings" user-emacs-directory))
@@ -25,14 +32,15 @@
 (require 'language-c)
 (require 'language-cscope)
 ;(require 'language-rtags)
+(require 'language-go)
 ;;(require 'language-erlang)
 ;;(require 'language-ruby)
 (require 'language-python)
-(require 'language-haskell)
+;;(require 'language-haskell)
 ;;(require 'language-intero)
-;; (require 'language-elixir)
-;; (require 'language-elm)
-;; (require 'language-psc)
+(require 'language-psc)
+;;(require 'language-elixir)
+;;(require 'language-elm)
 ;;(require 'language-ocaml)
 ;;(require 'language-scala)
 ;; (require 'language-ttcn)
@@ -42,6 +50,9 @@
 (require 'my-keys)
 
 (fset 'yes-or-no-p 'y-or-n-p)
+
+(setq company-global-modes '(not org-mode go-mode js2-mode cmake-mode shell-mode))
+(setq company-dabbrev-other-buffers nil)
 
 (ensure-package-installed
  'whole-line-or-region
@@ -61,7 +72,7 @@
 ;; Enable global-modes
 (my-turn-modes 1
                'global-auto-revert-mode
-               'global-company-mode
+;;               'global-company-mode
                'global-hl-line-mode
                'which-key-mode
                'winner-mode
@@ -155,13 +166,14 @@
  '(electric-pair-mode -1)
  '(enable-local-variables :all)
  '(ensime-startup-notification nil)
+ '(ensime-startup-snapshot-notification nil)
  '(erl-company-popup-help 1)
  '(flycheck-c/c++-googlelint-executable "/home/axadmin/repo/cpplint/cpplint.py")
- '(flycheck-clang-args (quote ("-std=c++11")))
+ '(flycheck-clang-args (quote ("-std=c++14")))
  '(flycheck-clang-include-path
    (quote
     ("/home/axadmin/repo/tas/sdk/sysroots/core2-64-nokia-linux/usr/include" "/home/axadmin/repo/tas//sdk/sysroots/core2-64-nokia-linux/usr/include/vtc/vtc_intf")))
- '(flycheck-clang-language-standard "c++11")
+ '(flycheck-clang-language-standard "c++14")
  '(flycheck-googlelint-filter "-whitespace,+whitespace/braces")
  '(flycheck-googlelint-linelength "120")
  '(flycheck-googlelint-root "project/src")
@@ -183,17 +195,21 @@
      ("\\\\.ino\\\\'" flymake-simple-make-init nil nil))))
  '(follow-auto t)
  '(global-auto-highlight-symbol-mode t)
- '(global-company-mode t)
+ '(global-company-mode nil)
  '(haskell-tags-on-save t)
  '(irony-additional-clang-options (quote ("-std=c++14")))
  '(kill-whole-line t)
  '(load-prefer-newer t)
+ '(menu-bar-mode nil)
  '(mode-compile-always-save-buffer-p t)
  '(nil nil t)
  '(org-agenda-files nil)
  '(org-babel-load-languages (quote ((awk . t) (python . t) (sh . t))))
  '(org-confirm-babel-evaluate nil)
  '(org-support-shift-select (quote always))
+ '(package-selected-packages
+   (quote
+    (color-theme-sanityinc-solarized restclient exec-path-from-shell which-key whole-line-or-region psci psc-ide purescript-mode flycheck-elm elm-mode alchemist elixir-mode ac-haskell-process haskell-mode ein company-jedi helm-cscope clang-format xcscope cmake-ide cmake-mode undo-tree tern smartparens rainbow-delimiters psvn projectile popup-imenu paredit neotree magit json-mode js2-refactor highlight-symbol helm-ag goto-chg github-browse-file git-gutter flycheck expand-region engine-mode company bm ack ace-jump-mode ac-js2)))
  '(pop-up-windows nil)
  '(projectile-mode t nil (projectile))
  '(projectile-mode-line
@@ -210,11 +226,13 @@
  '(rng-validate-mode 0)
  '(save-interprogram-paste-before-kill t)
  '(save-place-file (concat user-emacs-directory "places"))
+ '(select-enable-clipboard t)
+ '(select-enable-primary nil)
+ '(shell-file-name "/bin/bash")
+ '(show-paren-mode t)
  '(tab-always-indent t)
- '(transient-mark-mode t)
+ '(tool-bar-mode nil)
  '(use-file-dialog nil)
- '(x-select-enable-clipboard t)
- '(x-select-enable-primary nil)
  '(yas-global-mode 1 nil (yasnippet)))
 
 (setq browse-url-browser-function 'browse-url-generic browse-url-generic-program "open")
@@ -224,6 +242,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 130 :width normal))))
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :foreground "yellow")))))
 
 (setq kill-buffer-query-functions
