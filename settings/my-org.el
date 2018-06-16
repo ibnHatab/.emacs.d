@@ -8,17 +8,23 @@
 (require 'org)
 (require 'ox-reveal)
 
+(add-hook 'org-mode-hook 'flyspell-mode)
+
+
 (define-obsolete-function-alias 'org-define-error 'define-error)
 
-(setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/2.5.0/")
+(setq org-reveal-root "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/")
 (setq org-reveal-title-slide nil)
 
 (org-babel-do-load-languages 'org-babel-load-languages
     '(
       (sh . t)
       (python . t)
-    )
-    )
+      (plantuml . t)
+      ))
+
+(setq org-plantuml-jar-path
+      (expand-file-name "/usr/share/plantuml/plantuml.jar"))
 
 (custom-set-variables
  '(org-confirm-babel-evaluate nil)
