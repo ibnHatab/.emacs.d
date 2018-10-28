@@ -10,6 +10,8 @@
 ;; (elpy-use-ipython)
 ;; (setq elpy-rpc-backend "jedi")
 
+(setq python-shell-interpreter "ipython"
+      python-shell-interpreter-args "-i --simple-prompt")
 
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)

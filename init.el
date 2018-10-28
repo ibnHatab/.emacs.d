@@ -178,7 +178,7 @@
  '(flycheck-googlelint-linelength "120")
  '(flycheck-googlelint-root "project/src")
  '(flycheck-googlelint-verbose "3")
- '(flymake-allowed-file-name-masks
+ '(flymake-proc-allowed-file-name-masks
    (quote
     (("\\.l?hs\\'" haskell-flymake-init nil nil)
      ("\\.\\(?:c\\(?:pp\\|xx\\|\\+\\+\\)?\\|CC\\)\\'" flymake-simple-make-init nil nil)
@@ -210,7 +210,7 @@
  '(org-support-shift-select (quote always))
  '(package-selected-packages
    (quote
-    (color-theme-sanityinc-solarized restclient exec-path-from-shell which-key whole-line-or-region psci psc-ide purescript-mode flycheck-elm elm-mode alchemist elixir-mode ac-haskell-process haskell-mode ein company-jedi helm-cscope clang-format xcscope cmake-ide cmake-mode undo-tree tern smartparens rainbow-delimiters psvn projectile popup-imenu paredit neotree magit json-mode js2-refactor highlight-symbol helm-ag goto-chg github-browse-file git-gutter flycheck expand-region engine-mode company bm ack ace-jump-mode ac-js2)))
+    (color-theme-sanityinc-solarized restclient exec-path-from-shell which-key whole-line-or-region psci psc-ide purescript-mode flycheck-elm elm-mode alchemist elixir-mode ac-haskell-process haskell-mode ein company-jedi helm-cscope clang-format xcscope cmake-ide cmake-mode undo-tree tern smartparens rainbow-delimiters projectile popup-imenu paredit neotree magit json-mode js2-refactor highlight-symbol helm-ag goto-chg github-browse-file git-gutter flycheck expand-region engine-mode company bm ack ace-jump-mode ac-js2)))
  '(pop-up-windows nil)
  '(projectile-mode t nil (projectile))
  '(projectile-mode-line
@@ -221,7 +221,6 @@
          " Projectile"
        (format " Proj[%s]"
                (projectile-project-name))))))
- '(python-shell-interpreter "/usr/bin/ipython")
  '(require-final-newline t)
  '(rng-nxml-auto-validate-flag nil)
  '(rng-validate-mode 0)
