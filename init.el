@@ -198,6 +198,7 @@
  '(global-company-mode nil)
  '(haskell-tags-on-save t)
  '(irony-additional-clang-options (quote ("-std=c++14")))
+ '(irony-cdb-search-directory-list (quote ("." "workspace" "build")))
  '(kill-whole-line t)
  '(load-prefer-newer t)
  '(menu-bar-mode nil)

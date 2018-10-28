@@ -18,6 +18,7 @@
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
 ;; (cmake-ide-setup)
+(require 'irony)
 
 (add-hook 'c++-mode-hook 'irony-mode)
 
@@ -40,9 +41,6 @@
 
 (eval-after-load 'company '(add-to-list 'company-backends 'company-irony))
 (eval-after-load 'company '(add-to-list 'company-backends 'company-irony-c-headers))
-;; (add-to-list 'company-backends 'company-irony)
-;; (add-to-list 'company-backends 'company-irony-c-headers)
-
 
 ;; I use irony with flycheck to get real-time syntax checking.
 (add-hook 'flycheck-mode-hook #'flycheck-irony-setup)
@@ -54,79 +52,85 @@
   (sp-local-pair "/*" "*/" :post-handlers '((" | " "SPC")
                                             ("* ||\n[i]" "RET"))))
 
-;; (eval-after-load 'flycheck
-;;   '(progn
-;;      (require 'flycheck-google-cpplint)
-;;      ;; Add Google C++ Style checker.
-;;      ;; In default, syntax checked by Clang and Cppcheck.
-;;      (flycheck-add-next-checker 'c/c++-clang
-;;                                 '(warning . c/c++-googlelint))
-;;      (local-set-key "\C-cc" 'flycheck-compile)
-;;      ))
+(defun clang-format-buffer-smart ()
+  "Reformat buffer if .clang-format exists in the projectile root."
+    (when (f-exists? (expand-file-name ".clang-format" (projectile-project-root)))
+      (clang-format-buffer)))
 
-;; (custom-set-variables
-;;  '(flycheck-c/c++-googlelint-executable "/home/axadmin/repo/cpplint/cpplint.py")
-;;  '(flycheck-googlelint-verbose "3")
-;;  '(flycheck-googlelint-filter "-whitespace,+whitespace/braces")
-;;  '(flycheck-googlelint-root "project/src")
-;;  '(flycheck-googlelint-linelength "120"))
 
-;; https://clangformat.com/
+(add-hook 'c++-mode-hook 'my-cpp-mode-hook)
 
-(defvar clang-format-style
-  (concat "{ " (combine-and-quote-strings (list
-                                           "BasedOnStyle: Google"
-                                           "BreakBeforeBraces: Stroustrup"
-                                           "Standard: Cpp11"
-                                           ;; "AllowShortBlocksOnASingleLine: false"
-                                           "ConstructorInitializerAllOnOneLineOrOnePerLine: true"
-                                           "BreakConstructorInitializersBeforeComma: false"
-                                           "PointerBindsToType: false"
-                                           "NamespaceIndentation: None"
-                                           "AllowAllParametersOfDeclarationOnNextLine: false"
-                                           "AllowShortFunctionsOnASingleLine: false"
-                                           "ExperimentalAutoDetectBinPacking: true"
-                                           ;; "ConstructorInitializerAllOnOneLineOrOnePerLine: true"
-                                           "ColumnLimit: 160"
-                                           "IndentWidth: %d") ", ")
-          " }"))
+(defun my-cpp-mode-hook ()
+  (local-set-key (kbd "s-\'")   'remove-vowel)
+  (local-set-key (kbd "s-\"")   'add-vowel)
+  (local-set-key (kbd "C-c i") 'clang-format-region)
+  (local-set-key (kbd "C-c u") 'clang-format-buffer)
+  ;; (add-hook 'before-save-hook 'clang-format-buffer-smart nil 'local)
 
-(defun clang-format-executable ()
-  (let ((minor 10) ret)
-    (while (and (not ret)
-                (>= minor 0))
-      (setq ret (executable-find (format "clang-format-3.%d" minor)))
-      (decf minor))
-    (or ret (executable-find "clang-format"))))
+  )
 
-(defun clang-format-region (&optional start end)
-  (interactive "P")
 
-  (let* ((orig-windows (get-buffer-window-list (current-buffer)))
-         (orig-window-starts (mapcar #'window-start orig-windows))
-         (orig-point (point))
-         (binary (clang-format-executable))
-         (style (format clang-format-style (or (and (numberp c-basic-offset) c-basic-offset) 4))))
-    (unless start
-      (setq start (if mark-active (min (region-beginning) (region-end)) (point-min))))
-    (unless end
-      (setq end (if mark-active (max (region-beginning) (region-end)) (point-max))))
-    (unless binary
-      (error "Can't find clang-format"))
-    (call-process-region (point-min) (point-max) binary t (cons t nil) nil
-                         "-offset" (number-to-string (1- start))
-                         "-length" (number-to-string (- end start))
-                         (format "-cursor=%d" orig-point)
-                         "-style" style)
+;; (defvar clang-format-style
+;;   (concat "{ " (combine-and-quote-strings (list
+;;                                            "BasedOnStyle: Google"
+;;                                            "BreakBeforeBraces: Stroustrup"
+;;                                            "Standard: Cpp11"
+;;                                            ;; "AllowShortBlocksOnASingleLine: false"
+;;                                            "ConstructorInitializerAllOnOneLineOrOnePerLine: true"
+;;                                            "BreakConstructorInitializersBeforeComma: false"
+;;                                            "PointerBindsToType: false"
+;;                                            "NamespaceIndentation: None"
+;;                                            "AllowAllParametersOfDeclarationOnNextLine: false"
+;;                                            "AllowShortFunctionsOnASingleLine: false"
+;;                                            "ExperimentalAutoDetectBinPacking: true"
+;;                                            ;; "ConstructorInitializerAllOnOneLineOrOnePerLine: true"
+;;                                            "ColumnLimit: 160"
+;;                                            "IndentWidth: %d") ", ")
+;;           " }"))
 
-    (goto-char (point-min))
-    (when (looking-at "{ *\"Cursor\" *: *\\([0-9]+\\)")
-      (setq orig-point (string-to-number (match-string 1)))
-      (delete-char (1+ (- (point-at-eol) (point-at-bol)))))
-    (goto-char orig-point)
-    (dotimes (index (length orig-windows))
-      (set-window-start (nth index orig-windows)
-                        (nth index orig-window-starts)))))
+
+
+(defun remove-vowel ($string &optional $from $to)
+  (interactive
+   (if (use-region-p)
+       (list nil (region-beginning) (region-end))
+     (let ((bds (bounds-of-thing-at-point 'paragraph)) )
+       (list nil (car bds) (cdr bds)) ) ) )
+
+  (let (workOnStringP inputStr outputStr)
+    (setq workOnStringP (if $string t nil))
+    (setq inputStr (if workOnStringP $string (buffer-substring-no-properties $from $to)))
+    (setq outputStr
+          (let ((case-fold-search t))
+            (replace-regexp-in-string "#include \"\\(.*\\)\"" "#include <\\1>" inputStr) )  )
+    (if workOnStringP
+        outputStr
+      (save-excursion
+        (delete-region $from $to)
+        (goto-char $from)
+        (insert outputStr) )) ) )
+
+
+(defun add-vowel ($string &optional $from $to)
+  (interactive
+   (if (use-region-p)
+       (list nil (region-beginning) (region-end))
+     (let ((bds (bounds-of-thing-at-point 'paragraph)) )
+       (list nil (car bds) (cdr bds)) ) ) )
+
+  (let (workOnStringP inputStr outputStr)
+    (setq workOnStringP (if $string t nil))
+    (setq inputStr (if workOnStringP $string (buffer-substring-no-properties $from $to)))
+    (setq outputStr
+          (let ((case-fold-search t))
+            (replace-regexp-in-string "#include <\\(.*\\)>" "#include \"\\1\"" inputStr) )  )
+    (if workOnStringP
+        outputStr
+      (save-excursion
+        (delete-region $from $to)
+        (goto-char $from)
+        (insert outputStr) )) ) )
+
 
 (provide 'language-c)
 ;;; language-c.el ends here
