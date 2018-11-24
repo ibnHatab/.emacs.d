@@ -39,8 +39,6 @@
 (add-hook 'irony-mode-hook 'my-irony-mode-hook)
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
-(eval-after-load 'company '(add-to-list 'company-backends 'company-irony))
-(eval-after-load 'company '(add-to-list 'company-backends 'company-irony-c-headers))
 
 ;; I use irony with flycheck to get real-time syntax checking.
 (add-hook 'flycheck-mode-hook #'flycheck-irony-setup)
@@ -65,8 +63,9 @@
   (local-set-key (kbd "s-\"")   'add-vowel)
   (local-set-key (kbd "C-c i") 'clang-format-region)
   (local-set-key (kbd "C-c u") 'clang-format-buffer)
-  ;; (add-hook 'before-save-hook 'clang-format-buffer-smart nil 'local)
-
+  ;;(add-hook 'before-save-hook 'clang-format-buffer-smart nil 'local)
+  (eval-after-load 'company '(add-to-list 'company-backends 'company-irony))
+  (eval-after-load 'company '(add-to-list 'company-backends 'company-irony-c-headers))
   )
 
 
