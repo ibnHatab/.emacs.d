@@ -2,7 +2,6 @@
  'helm
  'helm-ag
  'helm-projectile
- 'psvn
  'github-browse-file
  'magit
  'projectile

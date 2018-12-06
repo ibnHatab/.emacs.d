@@ -4,7 +4,7 @@
 (require 'engine-mode)
 (engine-mode 1)
 
-(setq engine/browser-function 'browse-url-chromium)
+(setq engine/browser-function 'browse-url-firefox)
 
 (defengine duckduckgo
   "https://duckduckgo.com/?q=%s"
@@ -20,6 +20,15 @@
 
 (defengine youtube
   "http://www.youtube.com/results?aq=f&oq=&search_query=%s")
+
+(defengine rust
+  "https://doc.rust-lang.org/std/io/type.Result.html?search=%s"
+  :keybinding "r")
+
+(defengine crates
+  "https://crates.io/search?q=%s"
+  :keybinding "c")
+
 
 
 (provide 'my-engine)

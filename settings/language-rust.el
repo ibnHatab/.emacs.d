@@ -3,17 +3,24 @@
 (ensure-package-installed
  ;; 'cmake-project
  'rust-mode
- 'rust-playground
+;; 'rust-playground
  'racer
- 'flymake-rust
+ ;;'flymake-rust
+ 'flycheck-rust
  'cargo
  )
 
 (add-hook 'rust-mode-hook 'cargo-minor-mode)
+(setq rust-format-on-save t)
 
 (add-hook 'rust-mode-hook
           (lambda ()
-            (local-set-key (kbd "C-c <tab>") #'rust-format-buffer)))
+            (local-set-key (kbd "C-c <tab>") #'rust-format-buffer)
+            (local-set-key (kbd "C-c C-d") #'racer-describe)
+            (local-set-key (kbd "TAB") #'company-indent-or-complete-common)
+            ))
+
+(setq company-tooltip-align-annotations t)
 
 (setq racer-cmd "~/.cargo/bin/racer")
 ;;(setq racer-rust-src-path "/home/axadmin/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src")

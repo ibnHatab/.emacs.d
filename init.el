@@ -44,7 +44,7 @@
 ;;(require 'language-ocaml)
 ;;(require 'language-scala)
 ;; (require 'language-ttcn)
-;; (require 'language-rust)
+(require 'language-rust)
 ;; (require 'language-tla)
 ;;
 (require 'my-keys)
@@ -165,6 +165,7 @@
  '(edts-log-level (quote debug))
  '(electric-pair-mode -1)
  '(enable-local-variables :all)
+ '(engine-mode t)
  '(ensime-startup-notification nil)
  '(ensime-startup-snapshot-notification nil)
  '(erl-company-popup-help 1)
@@ -210,7 +211,11 @@
  '(org-support-shift-select (quote always))
  '(package-selected-packages
    (quote
+<<<<<<< HEAD
     (cargo flymake-rust racer rust-playground color-theme-sanityinc-solarized restclient exec-path-from-shell which-key whole-line-or-region psci psc-ide purescript-mode flycheck-elm elm-mode alchemist elixir-mode ac-haskell-process haskell-mode ein company-jedi helm-cscope clang-format xcscope cmake-ide cmake-mode undo-tree tern smartparens rainbow-delimiters psvn projectile popup-imenu paredit neotree magit json-mode js2-refactor highlight-symbol helm-ag goto-chg github-browse-file git-gutter flycheck expand-region engine-mode company bm ack ace-jump-mode ac-js2)))
+=======
+    (flycheck-rust color-theme-sanityinc-solarized restclient exec-path-from-shell which-key whole-line-or-region psci psc-ide purescript-mode flycheck-elm elm-mode alchemist elixir-mode ac-haskell-process haskell-mode ein company-jedi helm-cscope clang-format xcscope cmake-ide cmake-mode undo-tree tern smartparens rainbow-delimiters projectile popup-imenu paredit neotree magit json-mode js2-refactor highlight-symbol helm-ag goto-chg github-browse-file git-gutter flycheck expand-region engine-mode company bm ack ace-jump-mode ac-js2)))
+>>>>>>> 2add343cf53c4c559157f4bcfe9a86dc44e25f4c
  '(pop-up-windows nil)
  '(projectile-mode t nil (projectile))
  '(projectile-mode-line
@@ -221,7 +226,6 @@
          " Projectile"
        (format " Proj[%s]"
                (projectile-project-name))))))
- '(python-shell-interpreter "/usr/bin/ipython")
  '(require-final-newline t)
  '(rng-nxml-auto-validate-flag nil)
  '(rng-validate-mode 0)
