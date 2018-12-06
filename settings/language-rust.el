@@ -16,8 +16,11 @@
 (add-hook 'rust-mode-hook
           (lambda ()
             (local-set-key (kbd "C-c <tab>") #'rust-format-buffer)
-            (local-set-key (kbd "C-c d") #'racer-describe)
+            (local-set-key (kbd "C-c C-d") #'racer-describe)
+            (local-set-key (kbd "TAB") #'company-indent-or-complete-common)
             ))
+
+(setq company-tooltip-align-annotations t)
 
 (setq racer-cmd "~/.cargo/bin/racer")
 ;;(setq racer-rust-src-path "/home/axadmin/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src")

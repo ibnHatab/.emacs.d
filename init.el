@@ -165,6 +165,7 @@
  '(edts-log-level (quote debug))
  '(electric-pair-mode -1)
  '(enable-local-variables :all)
+ '(engine-mode t)
  '(ensime-startup-notification nil)
  '(ensime-startup-snapshot-notification nil)
  '(erl-company-popup-help 1)
