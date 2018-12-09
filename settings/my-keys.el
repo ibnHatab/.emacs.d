@@ -7,10 +7,10 @@
 
 (global-set-key [(f1)]              'switch-to-buffer-other-buffer)
 (global-set-key [(s-f1)]            'ido-switch-buffer)
-(global-set-key [(M-f1)]            'helm-buffers-list)
+(global-set-key [(C-f1)]            'helm-buffers-list)
+(global-set-key [(M-f1)]            'helm-mini)
 (global-set-key [(f2)]              'save-buffer)
 (global-set-key [(f3)]              'find-file)
-
 (global-set-key [(f9)]              'ack)
 (global-set-key [(C-f9)]            'grep)
 (global-set-key [(M-f9)]            'search-all-buffers)
@@ -50,6 +50,7 @@
 (global-set-key (kbd "C-r")     'isearch-backward-regexp)
 (global-set-key (kbd "C-M-s")   'isearch-forward)
 (global-set-key (kbd "C-M-r")   'isearch-backward)
+(global-set-key (kbd "M-s o")   'helm-occur)
 
 ;; Undo/Redo
 (global-set-key [M-backspace]    'undo)

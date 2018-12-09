@@ -79,6 +79,11 @@ the current position of point, then move it to the beginning of the line."
 (global-set-key (kbd "<left-fringe> <mouse-1>") 'bm-toggle-mouse)
 
 ;;
+(setq helm-mini-default-sources
+      '(helm-source-buffers-list
+        helm-source-bookmarks
+        helm-source-recentf
+        helm-source-buffer-not-found))
 
 ;; IDO
 (ido-mode t)
