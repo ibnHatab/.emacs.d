@@ -44,8 +44,8 @@
 ;;(require 'language-ocaml)
 ;;(require 'language-scala)
 ;; (require 'language-ttcn)
-;;(require 'language-rust)
-(require 'language-rust-lsp)
+(require 'language-rust)
+;;(require 'language-rust-lsp)
 ;; (require 'language-tla)
 ;;
 (require 'my-keys)
@@ -152,7 +152,7 @@
  '(cycbuf-clear-delay 2)
  '(cycbuf-file-name-replacements (quote (("/local/vlad/repos/" "r:/"))))
  '(delete-selection-mode t)
- '(dired-dwim-target t t)
+ '(dired-dwim-target t)
  '(display-time-mode t)
  '(ediff-split-window-function (quote split-window-vertically))
  '(ediff-window-setup-function (quote ediff-setup-windows-plain))
@@ -215,7 +215,7 @@
  '(org-support-shift-select (quote always))
  '(package-selected-packages
    (quote
-    (lsp-flycheck flycheck-rust color-theme-sanityinc-solarized restclient exec-path-from-shell which-key whole-line-or-region psci psc-ide purescript-mode flycheck-elm elm-mode alchemist elixir-mode ac-haskell-process haskell-mode ein company-jedi helm-cscope clang-format xcscope cmake-ide cmake-mode undo-tree tern smartparens rainbow-delimiters projectile popup-imenu paredit neotree magit json-mode js2-refactor highlight-symbol helm-ag goto-chg github-browse-file git-gutter flycheck expand-region engine-mode company bm ack ace-jump-mode ac-js2)))
+    (racer company-racer auto-highlight-symbol lsp-flycheck flycheck-rust color-theme-sanityinc-solarized exec-path-from-shell flycheck-elm elm-mode alchemist elixir-mode ac-haskell-process haskell-mode ein company-jedi helm-cscope clang-format cmake-ide cmake-mode undo-tree tern rainbow-delimiters popup-imenu paredit neotree magit json-mode js2-refactor highlight-symbol helm-ag goto-chg github-browse-file git-gutter flycheck expand-region engine-mode company bm ack ace-jump-mode ac-js2)))
  '(projectile-mode t nil (projectile))
  '(projectile-mode-line
    (quote
@@ -230,7 +230,7 @@
  '(recentf-mode t)
  '(require-final-newline t)
  '(rng-nxml-auto-validate-flag nil)
- '(rng-validate-mode 0)
+ '(rng-validate-mode 0 t)
  '(save-interprogram-paste-before-kill t)
  '(save-place-file (concat user-emacs-directory "places"))
  '(select-enable-clipboard t)
