@@ -6,7 +6,7 @@
   (switch-to-buffer (other-buffer)))
 
 (global-set-key [(f1)]              'switch-to-buffer-other-buffer)
-(global-set-key [(s-f1)]            'ido-switch-buffer)
+(global-set-key [(f11)]             'switch-to-buffer-other-buffer)
 (global-set-key [(C-f1)]            'helm-buffers-list)
 (global-set-key [(M-f1)]            'helm-mini)
 (global-set-key [(f2)]              'save-buffer)
@@ -15,7 +15,7 @@
 (global-set-key [(C-f9)]            'grep)
 (global-set-key [(M-f9)]            'search-all-buffers)
 
-(global-set-key [(f11)]             'nuke-trailing-whitespace)
+;; (global-set-key [(f11)]             'nuke-trailing-whitespace)
 (global-set-key [(C-f11)]           'cycle-my-theme)
 (global-set-key [(f12)]             'kill-this-buffer)
 (global-set-key [(C-f12)]           'server-edit)

@@ -152,7 +152,7 @@
  '(cycbuf-clear-delay 2)
  '(cycbuf-file-name-replacements (quote (("/local/vlad/repos/" "r:/"))))
  '(delete-selection-mode t)
- '(dired-dwim-target t t)
+ '(dired-dwim-target t)
  '(display-time-mode t)
  '(ediff-split-window-function (quote split-window-vertically))
  '(ediff-window-setup-function (quote ediff-setup-windows-plain))
