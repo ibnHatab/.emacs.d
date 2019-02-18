@@ -11,14 +11,16 @@
 (add-hook 'rust-mode-hook 'eglot-ensure)
 (setq rust-format-on-save t)
 
-(add-hook 'rust-mode-hook #'racer-mode)
+;;(add-hook 'rust-mode-hook #'racer-mode)
 ;;(add-hook 'racer-mode-hook #'eldoc-mode)
-(add-hook 'racer-mode-hook #'company-mode)
+;;(add-hook 'racer-mode-hook #'company-mode)
+(add-hook 'rust-mode-hook #'company-mode)
 
 
 (add-hook 'rust-mode-hook
           (lambda ()
             (flycheck-mode -1)
+            (local-set-key (kbd "<tab>") #'indent-for-tab-command)
             (local-set-key (kbd "C-c <tab>") #'rust-format-buffer)
             (local-set-key (kbd "C-x `") #'flymake-goto-next-error)
             (local-set-key (kbd "C-c C-d") #'eglot-help-at-point)
