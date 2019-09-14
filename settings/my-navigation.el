@@ -7,8 +7,8 @@
  'expand-region
  'neotree
  'ack
-;; 'cycbuf
  'company
+ 'minimap
  'bm)
 
 (setq scroll-step 1)                    ; scrolling page
@@ -42,7 +42,7 @@ the current position of point, then move it to the beginning of the line."
 (global-set-key (kbd "C-a")           'smart-line-beginning)
 
 (global-set-key (kbd "s-s")           'neotree-toggle)
-(global-set-key (kbd "s-a")           'neotree-find)
+(global-set-key (kbd "s-a")           'minimap-mode)
 
 (global-set-key [s-S-up]              'delete-other-windows-vertically)
 (global-set-key [s-S-down]            'delete-other-windows-vertically)

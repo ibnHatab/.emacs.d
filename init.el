@@ -207,6 +207,14 @@
  '(kill-whole-line t)
  '(load-prefer-newer t)
  '(menu-bar-mode nil)
+ '(minimap-always-recenter nil)
+ '(minimap-hide-fringes t)
+ '(minimap-highlight-line nil)
+ '(minimap-mode t)
+ '(minimap-recenter-type (quote middle))
+ '(minimap-update-delay 0.3)
+ '(minimap-width-fraction 0.13)
+ '(minimap-window-location (quote right))
  '(mode-compile-always-save-buffer-p t)
  '(nil nil t)
  '(org-agenda-files nil)
@@ -215,7 +223,7 @@
  '(org-support-shift-select (quote always))
  '(package-selected-packages
    (quote
-    (racer company-racer auto-highlight-symbol lsp-flycheck flycheck-rust color-theme-sanityinc-solarized exec-path-from-shell flycheck-elm elm-mode alchemist elixir-mode ac-haskell-process haskell-mode ein company-jedi helm-cscope clang-format cmake-ide cmake-mode undo-tree tern rainbow-delimiters popup-imenu paredit neotree magit json-mode js2-refactor highlight-symbol helm-ag goto-chg github-browse-file git-gutter flycheck expand-region engine-mode company bm ack ace-jump-mode ac-js2)))
+    (protobuf-mode smalltalk-mode minimap sublimity ag lsp-flycheck flycheck-rust color-theme-sanityinc-solarized restclient exec-path-from-shell which-key whole-line-or-region psci psc-ide purescript-mode flycheck-elm elm-mode alchemist elixir-mode ac-haskell-process haskell-mode ein company-jedi helm-cscope clang-format xcscope cmake-ide cmake-mode undo-tree tern smartparens rainbow-delimiters projectile popup-imenu paredit neotree magit json-mode js2-refactor highlight-symbol helm-ag goto-chg github-browse-file git-gutter flycheck expand-region engine-mode company bm ack ace-jump-mode ac-js2)))
  '(projectile-mode t nil (projectile))
  '(projectile-mode-line
    (quote
@@ -230,7 +238,7 @@
  '(recentf-mode t)
  '(require-final-newline t)
  '(rng-nxml-auto-validate-flag nil)
- '(rng-validate-mode 0 t)
+ '(rng-validate-mode 0)
  '(save-interprogram-paste-before-kill t)
  '(save-place-file (concat user-emacs-directory "places"))
  '(select-enable-clipboard t)
@@ -250,7 +258,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 130 :width normal))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :foreground "yellow")))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :foreground "yellow"))))
+ '(minimap-active-region-background ((t (:background "dark slate gray")))))
 
 (setq kill-buffer-query-functions
   (remq 'process-kill-buffer-query-function

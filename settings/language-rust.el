@@ -9,6 +9,7 @@
  'flycheck-rust
  'cargo
  )
+(setenv "RUST_BACKTRACE" "1")
 
 (add-hook 'rust-mode-hook 'cargo-minor-mode)
 (setq rust-format-on-save t)
